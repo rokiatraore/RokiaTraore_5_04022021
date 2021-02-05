@@ -1,0 +1,28 @@
+main{
+    max-width: 1440px;
+    margin: auto;
+    padding: 0 15px;
+}
+
+#ficheProduit  {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+figure{
+    width: 240px;
+    height: auto;
+    margin: 20px 10px;
+    border: solid 5px white;
+    border-radius: 20px;
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 1px 1px 8px rgb(184 178 178);
+   
+}
+
+img{
+    width: 100%;
+    height: 162px;
+    object-fit: cover;
+}

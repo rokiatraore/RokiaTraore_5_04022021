@@ -1,33 +1,39 @@
-/*const img = document.getElementById('img');
-
-fetch('http://localhost:3000/images/teddy_1.jpg')
-    .then(res => res.json())
-    .then(data => image.src = data[0].url)*/
-
+//Demande de récupération des données
 fetch('http://localhost:3000/api/teddies')
-.then(res => res.json())
 
-.then(data => {
-    console.log(data);
-
-    const html = data.map(produits =>{
-        return `<tr>    
-                    <td><img src=${produits.imageUrl} class="img-fluid img-thumbnail w-50"></td>  
-                    <td>${produits.name}</td>
-                    <td>${produits.description}</td>
-                    <td>
-                        <select>
-                            <option>${produits.colors[0]}</option>
-                            <option>${produits.colors[1]}</option>
-                            <option>${produits.colors[2]}</option>
-                            <option>${produits.colors[3]}</option>
-                        </select>
-                    </td>
-                    <td>${produits.price}</td>
-                </tr>`
+    //Première promesse : conversion du Body en JSON
+    .then(res => {
+        console.log(res);
+        if(res.ok){
+            res.json()
+            //Deuxième promesse : Accéder aux données
+            .then(dataProduits => {
+                console.log(dataProduits);
+                const listeProduits = dataProduits.map(produit => {
+                    return `<figure>    
+                                <img src=${produit.imageUrl}>
+                                <figcaption>
+                                    <h2>${produit.name}</h2>
+                                    <p>${produit.description}</p>
+                                    <p>${produit.price}</p>
+                                    <p>${produit.colors}</>
+                                    <button>Voir le produit</button>
+                                 </figcaption> 
+                            </figure>`
     })
-    console.log(html)
-    document.getElementById('listeProduits').innerHTML = html
+    
+    console.log(listeProduits)
+    document.getElementById('ficheProduit').innerHTML = listeProduits
 })
+    }
+
+    //Gérer les erreurs en affichant un message à l'utilisateur
+    else{
+        console.log("Erreur");
+        document.getElementById('erreur').innerHTML = "Erreur"
+    }
+})
+
+
 
 
