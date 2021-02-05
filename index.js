@@ -17,7 +17,7 @@ fetch('http://localhost:3000/api/teddies')
                                     <p>${produit.description}</p>
                                     <p>${produit.price}</p>
                                     <p>${produit.colors}</p>
-                                    <button>Voir le produit</button>
+                                    <a href="./produit.html?${produit._id}">Voir le produit</a>
                                  </figcaption> 
                             </figure>`
     })
