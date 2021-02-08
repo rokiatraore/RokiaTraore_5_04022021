@@ -9,7 +9,10 @@ fetch('http://localhost:3000/api/teddies')
             //Deuxième promesse : Accéder aux données
             .then(dataProduits => {
                 console.log(dataProduits);
+
+                //Afficher les produits dans la page accueil HTML
                 const listeProduits = dataProduits.map(produit => {
+                   
                     return `<figure>    
                                 <img src=${produit.imageUrl}>
                                 <figcaption>
@@ -17,7 +20,7 @@ fetch('http://localhost:3000/api/teddies')
                                     <p>${produit.description}</p>
                                     <p>${produit.price}</p>
                                     <p>${produit.colors}</p>
-                                    <a href="./produit.html?${produit._id}">Voir le produit</a>
+                                    <a href="./produit.html?${produit._id}" onclick="verifier()">Voir le produit</a>
                                  </figcaption> 
                             </figure>`
     })
