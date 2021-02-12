@@ -1,42 +1,39 @@
-//Demande de récupération des données
-fetch('http://localhost:3000/api/teddies')
+const messageErreur = document.getElementById('erreur');
+const ficheProduit = document.getElementById('ficheProduit');
 
-    //Première promesse : conversion du Body en JSON
-    .then(res => {
-        console.log(res);
-        if(res.ok){
-            res.json()
-            //Deuxième promesse : Accéder aux données
-            .then(dataProduits => {
-                console.log(dataProduits);
+// Création d'un nouvel objet de type XMLHttpRequest
+var request = new XMLHttpRequest();
 
-                //Afficher les produits dans la page accueil HTML
-                const listeProduits = dataProduits.map(produit => {
-                   
-                    return `<figure>    
-                                <img src=${produit.imageUrl}>
-                                <figcaption>
-                                    <h2>${produit.name}</h2>
-                                    <p>${produit.description}</p>
-                                    <p>${produit.price}</p>
-                                    <p>${produit.colors}</p>
-                                    <a href="./produit.html?${produit._id}" onclick="verifier()">Voir le produit</a>
-                                 </figcaption> 
-                            </figure>`
-    })
-    
-    console.log(listeProduits)
-    document.getElementById('ficheProduit').innerHTML = listeProduits
-})
+//Ouvrir une connexion vers API
+request.open('GET', 'http://localhost:3000/api/teddies/');
+
+//Récupération des résultats de la requête
+request.onreadystatechange = function(){
+    if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+        //Conversion JSON > JS
+        var response = JSON.parse(this.responseText);
+        console.log(response);
+
+        //Afficher les produits dans la page accueil HTML
+        response.forEach ( produit => {
+            ficheProduit.innerHTML += 
+            `<figure>    
+                <img src=${produit.imageUrl}>
+                <figcaption>
+                    <h2>${produit.name}</h2>
+                    <p>${produit.description}</p>
+                    <p>${produit.price}</p>
+                    <p>${produit.colors}</p>
+                    <a href="./produit.html?${produit._id}">Voir le produit</a>
+                </figcaption> 
+            </figure>`
+            
+
+        });
     }
-
-    //Gérer les erreurs en affichant un message à l'utilisateur
+    //Notifier message "erreur" si la récupération de l'API a échouée
     else{
-        console.log("Erreur");
-        document.getElementById('erreur').innerHTML = "Erreur"
+        messageErreur.innerHTML = "Erreur";
     }
-})
-
-
-
-
+};
+request.send();
