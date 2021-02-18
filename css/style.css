@@ -26,3 +26,47 @@ img{
     height: 162px;
     object-fit: cover;
 }
+/* ---------------------------- PAGE PANIER ----------------------------*/
+.containerProduit{
+    max-width: 650px;
+    justify-content: space-around;
+
+}
+
+.headerProduit{
+    width: 100%;
+    display: flex;
+    max-width: 650px;
+    justify-content: flex-start;
+}
+
+
+.produit {
+    width: 45%;
+}
+
+
+.prix{
+    width: 15%;
+    display: flex;
+
+}
+.qty{
+    width: 30%;
+    display: flex;
+
+}
+
+.total{
+    width: 10%;
+    display: flex;
+
+}
+.fiche{
+    max-width: 650px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid black;
+}
