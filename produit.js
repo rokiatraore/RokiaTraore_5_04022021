@@ -78,26 +78,26 @@ request.onreadystatechange = function () {
         .Augmenter la quantité d'un produit,
         .Ajouter un nouveau produit selectionné dans le local storage.*/
         function produitLocalStorage (){
-            var produits = localStorage.getItem("produitDansLePanier");
-            produits = JSON.parse(produits);
-
-            if(produits != null){
-                if(produits[produit.name] == undefined){
-                    produits = {
-                        ...produits,
+            var ficheProduit = localStorage.getItem("produitDansLePanier");
+            ficheProduit = JSON.parse(ficheProduit);
+            
+            if(ficheProduit != null){
+                if(ficheProduit[produit.name] == undefined){
+                    ficheProduit = {
+                        ...ficheProduit,
                         [produit.name] : produit
                     } 
-                    console.log(produits)
+                   
                 }
-                produits[produit.name].qty += 1;
+                ficheProduit[produit.name].qty += 1;
             }  
             else {
                 produit.qty = 1;
-                produits = {
+                ficheProduit = {
                     [produit.name] : produit
                 }
             }
-            localStorage.setItem("produitDansLePanier",JSON.stringify(produits));  
+            localStorage.setItem("produitDansLePanier",JSON.stringify(ficheProduit));  
         };
 
         //Mettre à jour le prix total des articles ajouté
@@ -113,13 +113,6 @@ request.onreadystatechange = function () {
             } 
         }
         
-        //Afficher les articles sur la page panier 
-        function affichageProduitPanier (){
-            var produits = localStorage.getItem("produitDansLePanier");
-            produits = JSON.parse(produits);
-            console.log(produits)
-        }
-        affichageProduitPanier ()
 
         //Garder la même valeur du panier en cas d'actualisation de la page
         function actualisePage(){

@@ -1,64 +1,85 @@
-// Création d'un nouvel objet de type XMLHttpRequest
-var request = new XMLHttpRequest();
-
-//Ouvrir une connexion vers API
-request.open('GET', 'http://localhost:3000/api/teddies/');
-
-//Récupération des résultats de la requête
-request.onreadystatechange = function(){
-    if (this.readyState == XMLHttpRequest.DONE){
-     if(this.status == 200) {
-        //Conversion JSON > JS
-        var response = JSON.parse(this.responseText);
-        console.log(response);
-
-        //Ajout de l'objet qty au produit
-        var produit = {
-            picture : response.imageUrl,
-            colors : response.colors,
-            name : response.name,
-            price : response.price/100,
-            description : response.description,
-            qty : 0
-        };
-
-        //Afficher les articles sur la page panier 
-        function affichageProduitPanier (){
-            var produits = localStorage.getItem("produitDansLePanier");
-            produits = JSON.parse(produits);
+//Afficher les articles sur la page panier 
+function affichageProduitPanier (){
+    var produits = localStorage.getItem("produitDansLePanier");
+    produits = JSON.parse(produits);
             
-            var totalProduits = localStorage.getItem("totalPrix");
-            totalProduits = JSON.parse(totalProduits);
+    var totalProduits = localStorage.getItem("totalPrix");
+    totalProduits = JSON.parse(totalProduits);
 
-            var containerproduits = document.querySelector('.produitAjouter');
-            var containerTotalProduits = document.querySelector('.totalProduits');
+    var containerproduits = document.querySelector('.produitAjouter');
+    var containerTotalProduits = document.querySelector('.totalProduits');
            
-            if(produits && containerproduits ){
-                Object.values(produits).map(ficheProduit => {
-                    containerproduits.innerHTML += `
-                    <div class="fiche">
-                        <img class="produit" src=${ficheProduit.picture}>
-                        <span class="produit">${ficheProduit.name}</span>
+    if(produits && containerproduits ){
+        Object.values(produits).forEach(ficheProduit => {
+            containerproduits.innerHTML += 
+                `<div class="fiche" data-name=${ficheProduit.name}>
+                    <i class="fas fa-times aa" ></i>
+                    <img class="produit" src=${ficheProduit.picture}>
+                    <span class="produit">${ficheProduit.name}</span>
                     <div class="prix">${ficheProduit.price}</div>
-                    <div class="qty">${ficheProduit.qty}</div>
-                    <div class="total">${ficheProduit.price * ficheProduit.qty}</div>
+                    <div class="qty" >
+                        <i class="fas fa-arrow-circle-up" ></i>
+                        <span>${ficheProduit.qty}</span>
+                        <i class="fas fa-arrow-alt-circle-down"></i>
                     </div>
-                    `
 
-                    if (totalProduits && containerTotalProduits){
-                        containerTotalProduits.innerHTML = totalProduits;
-                    }
-                    
-                })
-
-            }
+                    <div class="total">${ficheProduit.price * ficheProduit.qty}</div>
+                </div>`
+            
+            
+        if (totalProduits && containerTotalProduits){
+            containerTotalProduits.innerHTML = totalProduits;
         }
+                    
+        })
+
+
+    }
+}
 affichageProduitPanier ()
+
+
+
+/* ---------------------------- SUPPRIMER ARTICLE PANIER ----------------------------*/
+
+var boutonSuppression = document.getElementsByClassName('aa')
+
+for(var i=0;i< boutonSuppression.length;i++){
+    boutonSuppression[i].addEventListener('click', supprimerArticle );
+}
+
+function supprimerArticle (){
+    var ficheProduit = localStorage.getItem("produitDansLePanier");
+    ficheProduit = JSON.parse(ficheProduit);
+
+    var containerproduits = document.getElementsByClassName('fiche');
+
+    for(var i=0; containerproduits.length; i++){
+    var dataName = containerproduits[i].dataset.name;
+    console.log(dataName)
+
     }
-    //Notifier message "erreur" si la récupération de l'API a échouée
+    
+
+    /*if(ficheProduit == dataName){
+        containerproduits.textContent = ` `;
+        ficheProduit = {
+            ...ficheProduit,
+            [produit.name] : produit
+        } 
+        delete ficheProduit;
+        localStorage.setItem("produitDansLePanier", delete Object.values(ficheProduit));
+    }
+    localStorage.setItem("produitDansLePanier",JSON.stringify(ficheProduit));  */
+
+    
+ 
+
+    /*if(produits != undefined && containerproduits){    
+            containerproduits.textContent = ` `;
+            localStorage.setItem("produitDansLePanier", delete Object.values(produits));
+    }
     else{
-        messageErreur.innerHTML = "Erreur";
-    }
-}   
-};
-request.send();
+        produit;
+    }*/
+}
