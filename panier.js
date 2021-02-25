@@ -16,6 +16,7 @@ function affichageProduitPanier (){
                     <i class="fas fa-times aa" ></i>
                     <img class="produit" src=${ficheProduit.picture}>
                     <span class="produit">${ficheProduit.name}</span>
+                    <span class="couleur">${ficheProduit.colors}</span>
                     <div class="prix">${ficheProduit.price}</div>
                     <div class="qty" >
                         <i class="fas fa-arrow-circle-up" ></i>

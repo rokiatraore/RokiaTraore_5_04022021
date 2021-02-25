@@ -16,40 +16,32 @@ request.onreadystatechange = function () {
       if (this.status == 200) {
         //Conversion JSON > JS
         var response = JSON.parse(this.responseText);
-
-         //Ajout de l'objet qty au produit
-        var produit = {
-            picture : response.imageUrl,
-            colors : response.colors,
-            name : response.name,
-            price : response.price/100,
-            description : response.description,
-            qty : 0
-        };
     
     /* ---------------------------- STRUCTURE FICHE PRODUIT ----------------------------*/
 
         document.getElementById('produit').innerHTML += 
             `<figure>    
-                <img src=${produit.picture}>
+                <img src=${response.imageUrl}>
                 <figcaption>
-                    <h2>${produit.name}</h2>
-                    <p>${produit.description}</p>
-                    <p>${produit.price}.00€</p>
+                    <h2>${response.name}</h2>
+                    <p>${response.description}</p>
+                    <p>${response.price/100}.00€</p>
                 </figcaption> 
             </figure>`
 
         //Liste déroulante des choix de couleurs  
-        for(i=0; i < produit.colors.length; i++){ 
+        for(i=0; i < response.colors.length; i++){ 
             document.getElementById('couleur').innerHTML +=`<option>${response.colors[i]}</option>`         
         };
         
     /* ---------------------------- BOUTON AJOUTER AU PANIER ----------------------------*/
-
+        
         //Sélection du bouton dans le code
         var boutonPanier = document.getElementById('panier');
+
         //Réaction au clic de l'utilisateur sur le bouton "ajouter au panier" par l'appel d'une fonction
         boutonPanier.addEventListener('click', ajoutArticlePanier );
+        
         //  Appel des fonctions
         function ajoutArticlePanier (){
             nombreArticlePanier();
@@ -75,11 +67,31 @@ request.onreadystatechange = function () {
         };
 
         /*.Sauvegarder le nom du produit ajouté au panier dans le local storage,
+        .Modifier la couleur 
         .Augmenter la quantité d'un produit,
         .Ajouter un nouveau produit selectionné dans le local storage.*/
         function produitLocalStorage (){
-            var ficheProduit = localStorage.getItem("produitDansLePanier");
-            ficheProduit = JSON.parse(ficheProduit);
+
+            var ficheProduit = JSON.parse(localStorage.getItem("produitDansLePanier"));
+
+            //Mettre les choix du formulaire dans une variable
+            var optionCouleur = document.getElementById("couleur");
+            console.log(optionCouleur);
+
+            //Mettre la valeur de l'option selectionné dans une variable
+            var option = optionCouleur.value;
+
+            //Ajouter propriété qty et couleur dans l'objet
+            var produit = {
+                picture : response.imageUrl,
+                colors : option,
+                name : response.name,
+                price : response.price/100,
+                description : response.description,
+                qty : 0
+            }; 
+            console.log(produit)
+
             
             if(ficheProduit != null){
                 if(ficheProduit[produit.name] == undefined){
@@ -106,10 +118,10 @@ request.onreadystatechange = function () {
 
             if(prix != null){
                 prix = parseInt(prix);
-                localStorage.setItem("totalPrix", prix + produit.price)
+                localStorage.setItem("totalPrix", prix + response.price/100)
             }
             else{
-                localStorage.setItem("totalPrix", produit.price);
+                localStorage.setItem("totalPrix", response.price/100);
             } 
         }
         
