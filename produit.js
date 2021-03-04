@@ -88,28 +88,45 @@ request.onreadystatechange = function () {
                 name : response.name,
                 price : response.price/100,
                 description : response.description,
+                id : response._id,
                 qty : 0
             }; 
             console.log(produit)
 
-            
             if(ficheProduit != null){
                 if(ficheProduit[produit.name] == undefined){
                     ficheProduit = {
                         ...ficheProduit,
                         [produit.name] : produit
-                    } 
-                   
+                        
+                    }
+                    console.log("c3");
+                }
+                else if (ficheProduit[produit.name].name == produit.name && ficheProduit[produit.name].colors !== produit.colors){
+                    ficheProduit = {
+                        ...ficheProduit,
+                        [produit.name] : produit
+                        
+                    }
+                    console.log("c4");
+
                 }
                 ficheProduit[produit.name].qty += 1;
+                console.log("c2");
+                
             }  
             else {
                 produit.qty = 1;
                 ficheProduit = {
                     [produit.name] : produit
                 }
+                console.log("c1");
+
             }
-            localStorage.setItem("produitDansLePanier",JSON.stringify(ficheProduit));  
+
+            localStorage.setItem("produitDansLePanier",JSON.stringify(ficheProduit)); 
+
+             
         };
 
         //Mettre à jour le prix total des articles ajouté
@@ -135,6 +152,8 @@ request.onreadystatechange = function () {
             }
             }
             actualisePage();
+
+            
 
     }
     //Notifier message "erreur" si la récupération de l'API a échouée
