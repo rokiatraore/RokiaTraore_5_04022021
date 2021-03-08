@@ -93,34 +93,37 @@ request.onreadystatechange = function () {
             }; 
             console.log(produit)
 
-            if(ficheProduit != null){
-                if(ficheProduit[produit.name] == undefined){
+            //Si le produit existe dans le LocalStorage alors incrémenter 1 à qty
+            if(ficheProduit != null /*&& ficheProduit[produit.name].name == produit.name && ficheProduit[produit.name].colors == produit.colors*/){
+                //Si le produit n'existe pas alors créer une nouvelle fiche produit
+                if(ficheProduit[`${produit.colors}-${produit.name}`] == undefined){
                     ficheProduit = {
                         ...ficheProduit,
-                        [produit.name] : produit
+                        [`${produit.colors}-${produit.name}`] : produit
                         
                     }
-                    console.log("c3");
+                    console.log("conditions 3 - Créer fiche en cas de nouveau produit");
                 }
-                else if (ficheProduit[produit.name].name == produit.name && ficheProduit[produit.name].colors !== produit.colors){
+                //Si le nom du produit du LocalStorage sont identique et la couleur différente alors créer un nouvelle fiche produit 
+                else if (ficheProduit[`${produit.colors}-${produit.name}`].name == produit.name && ficheProduit[`${produit.colors}-${produit.name}`].colors !== produit.colors){
                     ficheProduit = {
                         ...ficheProduit,
-                        [produit.name] : produit
-                        
+                        [`${produit.colors}-${produit.name}`] : produit
+                         
                     }
-                    console.log("c4");
+                    console.log("conditions 4 - Créer une fiche si le nom est similaire mais couleur différente");
 
                 }
-                ficheProduit[produit.name].qty += 1;
-                console.log("c2");
+                ficheProduit[`${produit.colors}-${produit.name}`].qty += 1;
+                console.log("conditions 2 - incrémenter + 1 qty fiche existente");
                 
             }  
             else {
                 produit.qty = 1;
                 ficheProduit = {
-                    [produit.name] : produit
+                    [`${produit.colors}-${produit.name}`] : produit
                 }
-                console.log("c1");
+                console.log("conditions 1 - Créer un fiche");
 
             }
 
