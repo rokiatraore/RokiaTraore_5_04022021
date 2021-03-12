@@ -194,7 +194,7 @@ function augmenterQty(that){
     localStorage.setItem("produitDansLePanier", JSON.stringify(produits))
 
     //Actualiser la page automatiquement
-    //window.location.href = "panier.html";
+    window.location.href = "panier.html";
 }
 
 //Fonction pour modifier le nombre d'article dans le localStorage et sur la page panier(icône panier)
@@ -226,10 +226,7 @@ function actualisePage(){
 actualisePage();
 
 // ---------------------------- FORMULAIRE COMMANDE ----------------------------
-
-var formulaire = document.getElementById("formulaire")
-//Selectionner que les input du formulaire ayant l'id : formulaire
-var inputs = document.getElementById("formulaire").getElementsByTagName("input")
+var form = document.getElementById("form")
 var nom = document.getElementById('nom')
 var prenom = document.getElementById('prenom')
 var adresse = document.getElementById('adresse')
@@ -239,81 +236,230 @@ var telephone = document.getElementById('telephone')
 var codePostal = document.getElementById('codePostal')
 var email = document.getElementById('email')
 
+/*----- RegExp ----- */
+var regexpNomPrenomPaysVille = /^[a-zA-z-\s]+$/;
+var regexpTelephone = /^[0-9]{10}$/;
+var regexpcodePostal = /^[0-9]{5}$/
+/*E-mail : 
+    Contenir une @ et un .;
+    Avant @ : nous pouvons trouver, lettres, chiffres ainsi que "-" "_" ".";
+    Contenir 1 @
+    Après @ : vérification similaire au avant @;
+    Contenir 1 "." puis 2 ou 3 caractères alpha;
+    */
+var regexpEmail = new RegExp (/^[a-zA-Z0-9._-]+[@]{1}[a-zA-Z0-9._-]+[.]{1}[a-zA-Z]{2,3}$/)
 
-
-formulaire.addEventListener("submit", function(e){
-
-    var erreur;
-
-    //Afficher un message d'erreur en cas de champs non renseigné.
-    for (var i = 0; i < inputs.length; i++){
-        if(inputs[i].value == ''){
-            erreur = "Veuillez renseigner tous les champs"
-        }
+form.addEventListener("submit", function(e){
+    e.preventDefault();
+    if(inputValide()){
+        alert("b")
+       sendBackEnd()
+       //window.location.href = "http://order.html"
     }
-
-    //Gérer les expressions régulières
-
-    //Nom - Prénom - Ville - Adresse - Pays
-    var regexNomPrenomPaysVille = /^[a-zA-z-\s]+$/
-    if(regexNomPrenomPaysVille.test(nom.value) == false || regexNomPrenomPaysVille.test(ville.value) == false || 
-    regexNomPrenomPaysVille.test(prenom.value) == false || regexNomPrenomPaysVille.test(pays.value)==false || regexNomPrenomPaysVille.test(adresse.value)==false){
-        erreur = "Le champs doit comporter des lettres et des tirets uniquements \n"
-    }
-
-    //Code postal - Téléphone
-    var regexNumero = /^[0-9]+$/
-    if(regexNumero.test(telephone.value) == false || regexNumero.test(codePostal.value) == false){
-        erreur = erreur + "Saisir uniquement des caractères numériques \n "
-    }
-
-    /*E-mail, regex : 
-    Contenir une @ et .;
-    Avant @ : nous pouvons trouver, lettres, chiffres ainsi que "-" "_";
-    Après @ : vérification similaire, excepté "_". Il faut qu'il y ai au moins 2 caractères après;
-    Après . : 2 ou 3 caractères alpha*/
-    var regexEmail = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a.zA-Z]{2,3}+$/
-    if(regexEmail.test(email.value) == false){
-        erreur = erreur + "Saisir une adresse mail valide "
-    }
-
-    if(erreur){
-        e.preventDefault();
-        document.getElementById("erreurForm").innerHTML = erreur;
-    }
-    else {
-        alert("Formulaire envoyé !")
-    }
-
     
 });
 
+function inputValide(){
+    //Mettre dans une variable la valeur des inputs
+    var nomValue = nom.value.trim(); 
+    var prenomValue = prenom.value.trim();
+    var adresseValue = adresse.value.trim();
+    var villeValue = ville.value.trim();
+    var paysValue = pays.value.trim();
+    var telephoneValue = telephone.value.trim();
+    var codePostalValue = codePostal.value.trim();
+    var emailValue = email.value.trim();
 
+    /* ----- Validation Nom ----- */
 
-//Afficher un message d'erreur en cas de champs non renseigné.
-/*function inputVide(e){
-    var erreur;
-    for (var i = 0; i < inputs.length; i++){
-        if(inputs[i].value == ''){
-            erreur = "Veuillez renseigner tous les champs"
-        }
+    if(nomValue === '' ){
+        //Afficher un message d'erreur
+        messageErreur(nom, 'Le champ doit être complété')
+        return 
     }
-    if(erreur){
-        e.preventDefault();
-        document.getElementById("erreurForm").innerHTML = erreur;
+    else if(regexpNomPrenomPaysVille.test(nomValue) == false){
+        messageErreur(nom, 'Le nom doit comporter des lettres et des tirets uniquements')
+        return 
     }
-    else {
-        alert("Formulaire envoyé !")
+    else{
+        //Afficher un message de validation
+        messageValide(nom)
     }
-}
-var email = document.getElementById('adresse')
-console.log(adresse)
-function regex(e){
     
-    var regexEmail = /[a-zA-z][@][.]$/
+    
+    /* ----- Validation Prénom ----- */
 
-    if(regexEmail.test(adresse.value) == false){
-        e.preventDefault();
-        alert ("fff")
+    if(prenomValue === '' ){
+        messageErreur(prenom, 'Le champ doit être complété')
+        return
+
     }
-}*/
+    else if(regexpNomPrenomPaysVille.test(prenomValue) == false){
+        messageErreur(prenom, 'Le nom doit comporter des lettres et des tirets uniquements')
+        return
+    }
+    else{
+        messageValide(prenom)
+    }
+  
+
+      /* ----- Validation email ----- */
+    
+      if(emailValue === '' ){
+        messageErreur(email, 'Le champ doit être complété')
+        return
+    }
+    else if(regexpEmail.test(emailValue) == false){
+        messageErreur(email, 'email invalide')
+        return
+    }
+    else{
+        messageValide(email)
+    }
+
+    /* ----- Validation adresse ----- */
+    
+    if(adresseValue === '' ){
+        messageErreur(adresse, 'Le champ doit être complété')
+        return
+    }
+    else if(regexpNomPrenomPaysVille.test(adresseValue) == false){
+        messageErreur(adresse, 'Le nom doit comporter des lettres et des tirets uniquements')
+        return
+    }
+
+    else{
+        messageValide(adresse)
+    }
+
+    /* ----- Validation Code postal ----- */
+    
+    if(codePostalValue === '' ){
+        messageErreur(codePostal, 'Le champ doit être complété')
+        return
+
+    }
+    else if(regexpcodePostal.test(codePostalValue) == false){
+        messageErreur(codePostal, 'Code postal invalide')
+        return
+    }
+    else{
+        messageValide(codePostal)
+    }
+
+    /* ----- Validation ville ----- */
+    
+    if(villeValue === '' ){
+        messageErreur(ville, 'Le champ doit être complété')
+        return
+
+    }
+    else if(regexpNomPrenomPaysVille.test(villeValue) == false){
+        messageErreur(ville, 'Le nom doit comporter des lettres et des tirets uniquements')
+        return
+    }
+    else{
+        messageValide(ville)
+    }
+    
+    /* ----- Validation pays ----- */
+    
+    if(paysValue === '' ){
+        messageErreur(pays, 'Le champ doit être complété')
+        return false
+    }
+    else if(regexpNomPrenomPaysVille.test(paysValue) == false){
+        messageErreur(pays, 'Le nom doit comporter des lettres et des tirets uniquements')
+        return
+    }
+    else{
+        messageValide(pays)
+    }
+
+    /* ----- Validation téléphone ----- */
+    
+     if(telephoneValue === '' ){
+        messageErreur(telephone, 'Le champ doit être complété')
+        return
+    }
+    else if(regexpTelephone.test(telephoneValue) == false){
+        messageErreur(telephone, 'Numéro invalide')
+        return
+    }
+    else{
+        messageValide(telephone)
+    }
+    return true
+}
+
+function messageErreur(input, message){
+    var formItem = input.parentElement; // .formItem
+    var small = formItem.querySelector('small')
+
+    //Ajouter un message d'erreur à la balise <small>
+    small.innerText = message
+
+    //Mettre en rouge la bordure en ajoutant "invalide" à la classe .formItem
+    formItem.className = 'formItem invalide'
+}
+
+function messageValide(input, message){
+    var formItem = input.parentElement; // .formItem
+    var small = formItem.querySelector('small')
+
+    //Mettre en vert la bordure en ajoutant "invalide" à la classe .formItem
+    formItem.className = 'formItem valide'
+
+}
+console.log(produits)
+
+
+function sendBackEnd (){
+
+    //Récupérer les ID des produits
+    var products = [];
+    for(i = 0; i < tableauProduits.length; i = i + 1){
+        tableauProduits[i].id
+        products.push(tableauProduits[i].id)
+        //console.log(typeof tableauProduits[i].id)
+    }
+    console.log(products)
+
+    //Récupérer les valeurs du formulaire
+    var contact = {
+        firstName : nom.value,
+        lastName : prenom.value,
+        address : adresse.value,
+        city : ville.value,
+        email : email.value
+    
+    }
+    //console.log(typeof contact.email)
+
+    //Envoyer les données au serveur
+    fetch('http://localhost:3000/api/teddies/order', {
+        method : 'POST',
+        headers : {
+            'Content-Type' :'application/json',
+        },
+        body : JSON.stringify({contact,products}),
+    })
+
+    //Accéder à la requête et convertir en format json
+    .then(function(response){
+      return response.json()
+    //Récupérer les données du body de la requête
+    })
+    .then(function(data){
+        localStorage.setItem('order',JSON.stringify(data.orderId))
+        document.location ='file:///C:/Users/konat/Documents/Openclassrooms/P5/front-end/confirm.html'
+    })
+
+}
+
+//sendBackEnd ()
+
+
+
+
+

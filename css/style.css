@@ -1,72 +1,133 @@
-main{
-    max-width: 1440px;
-    margin: auto;
-    padding: 0 15px;
-}
+nav {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  background-color: #F1E7F3; }
+  nav img {
+    width: 200px; }
 
-#ficheProduit  {
+.hero {
+  min-height: calc(100vh - 60px);
+  background: url("C:/Users/konat/Documents/Openclassrooms/P5/front-end/img/nounours.jpg") center/cover no-repeat;
+  display: flex;
+  align-self: center;
+  justify-content: center; }
+  .hero .banniere {
+    background: #ffffffa3;
     display: flex;
-    flex-wrap: wrap;
-}
+    padding: 2rem;
+    margin: 85px;
+    align-items: center; }
+    .hero .banniere .banniereTitre {
+      margin-bottom: 3rem;
+      font-weight: 300;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 68px; }
 
-figure{
-    width: 240px;
+.imageTop {
+  height: 347px;
+  position: relative; }
+  .imageTop img {
+    width: 100%;
+    height: 479px;
+    object-fit: cover; }
+  .imageTop .texteImageTop {
+    position: absolute;
+    z-index: 0;
+    bottom: 10px;
+    right: 313px;
+    background-color: #ffffffa3;
+    padding: 72px;
+    text-align: center;
+    font-weight: 300;
+    background: url("C:/Users/konat/Documents/Openclassrooms/P5/front-end/img/nounours.jpg") center/cover; }
+
+#ficheProduit {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  margin: 169px; }
+  #ficheProduit figure {
+    width: 303px;
     height: auto;
-    margin: 20px 10px;
+    margin: 32px 29px;
     border: solid 5px white;
     border-radius: 20px;
     background-color: white;
-    overflow: hidden;
-    box-shadow: 1px 1px 8px rgb(184 178 178);
-   
-}
+    overflow: hidden; }
+    #ficheProduit figure img {
+      width: 100%;
+      height: 162px;
+      object-fit: cover; }
 
-img{
-    width: 100%;
-    height: 162px;
-    object-fit: cover;
-}
-/* ---------------------------- PAGE PANIER ----------------------------*/
-.containerProduit{
-    max-width: 650px;
-    justify-content: space-around;
+img {
+  height: 287px;
+  object-fit: cover; }
 
-}
+.fiche {
+  display: flex; }
 
-.headerProduit{
-    width: 100%;
-    display: flex;
-    max-width: 650px;
-    justify-content: flex-start;
-}
+/* ---------------------------- PAGE COMMANDE ----------------------------*/
+.containerForm {
+  overflow: hidden;
+  width: 400px;
+  max-width: 100%; }
 
+.headerForm {
+  background-color: black;
+  padding: 20px 40px; }
 
-.produit {
-    width: 45%;
-}
+.headerForm h1 {
+  margin: 0; }
 
+#form {
+  padding: 30px 40px; }
 
-.prix{
-    width: 15%;
-    display: flex;
+.formItem {
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  position: relative; }
 
-}
-.qty{
-    width: 30%;
-    display: flex;
+.formItem label {
+  display: inline-block;
+  margin-bottom: 5px; }
 
-}
+.formItem input {
+  border: 2px solid black;
+  border-radius: 4px;
+  display: block;
+  font-size: 14px;
+  padding: 10px;
+  width: 100%; }
 
-.total{
-    width: 10%;
-    display: flex;
+.formItem.valide input {
+  border-color: green; }
 
-}
-.fiche{
-    max-width: 650px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid black;
-}
+.formItem.invalide input {
+  border-color: red; }
+
+.formItem i {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  visibility: hidden; }
+
+.formItem.formItem.valide i.fa-check-circle {
+  visibility: visible;
+  color: green; }
+
+.formItem.formItem.invalide i.fa-check-circle {
+  visibility: visible;
+  color: red; }
+
+.formItem small {
+  visibility: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 0; }
+
+.formItem.invalide small {
+  visibility: visible;
+  color: red; }

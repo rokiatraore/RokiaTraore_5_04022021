@@ -1,0 +1,78 @@
+nav{
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    background-color: #F1E7F3;
+
+    img{
+        width: 200px;
+    }
+}
+.hero{
+    min-height: calc(100vh - 60px);
+    background: url("C:/Users/konat/Documents/Openclassrooms/P5/front-end/img/nounours.jpg")center/cover no-repeat;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+
+    .banniere{
+        background: #ffffffa3;
+        display: flex;
+        padding: 2rem;
+        margin: 85px;
+        align-items: center;
+
+        .banniereTitre{
+            margin-bottom: 3rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 68px;
+        }
+    }
+}
+.imageTop{
+    height: 347px;
+    position: relative;
+    img{
+        width: 100%;
+        height: 479px;
+        object-fit: cover;
+    }
+    .texteImageTop{
+        position: absolute;
+        z-index: 0;
+        bottom: 10px;
+        right: 313px;
+        background-color: #ffffffa3 ;
+        padding: 72px;
+        text-align: center;
+        font-weight: 300;
+        background: url("C:/Users/konat/Documents/Openclassrooms/P5/front-end/img/nounours.jpg")center/cover;
+    }
+}
+
+#ficheProduit{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    margin: 169px;
+
+    figure{
+        width: 303px;
+        height: auto;
+        margin: 32px 29px;
+        border: solid 5px white;
+        border-radius: 20px;
+        background-color: white;
+        overflow: hidden;
+
+        img{
+            width: 100%;
+            height: 162px;
+            object-fit: cover;
+        }
+    }
+}
+

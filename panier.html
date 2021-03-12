@@ -28,46 +28,81 @@
                 </div>
                 <div class="produitAjouter" ></div>
                 <div class="totalProduits"></div>
-                <div>
-                    <h1>Passer commande</h1>
-                    <form method="post" id="formulaire">
-                        <h2>Informations personnelles</h2>
-                        <p>
-                            <label>Titre</label> : 
-                            <input type="checkbox" name="mme" id="mme" /><label for="mme">Mme</label>
-                            <input type="checkbox" name="mr" id="mr" /><label for="mr">M.</label>
 
-                        </p>
-                        <p>
-                            <label>Nom</label> : <input type="text" name="nom" id="nom" placeholder="nom" />
-                        </p>
-                        <p>
-                            <label>Prénom</label> : <input type="text" name="prenom" id="prenom"  placeholder="prénom" />
-                        </p>
-                        <p>
-                            <label>E-mail</label> : <input type="email" name="mail" id="email" placeholder="EMAIL@EXEMPLE.COM" />
-                        </p>
-                        <h2>Adresse</h2>
-                        <p>
-                            <label>Adresse</label> : <input type="text" name="adresse" id="adresse" />
-                        </p>
-                        <p>
-                            <label>Code Postal</label> : <input type="text" name="codePostal" id="codePostal" />
-                            <p class="erreurNumero"></p>
+                <div class="containerForm">
+                    <div class="headerForm">
+                        <h1>Passer commande</h1>
+                    </div>
+                    <form method="POST" id="form">
+                        <h2 class="headerFormItem">Informations personnelles</h2>
+                        <div class="formItem">
+                            <label>Nom</label> : 
+                            <input type="text" name="nom" id="nom" placeholder="nom" />
+                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-exclamation-circle"></i>
+                            <small>Message erreur</small>
+                        </div>
+                        
+                        <div class="formItem" >
+                            <label>Prénom</label> : 
+                            <input type="text" name="prenom" id="prenom"  placeholder="prénom" />
+                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-exclamation-circle"></i>
+                            <small>Message erreur</small>
+                        </div>
+                        
+                        <div class="formItem">
+                            <label>E-mail</label> : 
+                            <input type="text" name="email" id="email" placeholder="EMAIL@EXEMPLE.COM" />
+                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-exclamation-circle"></i>
+                            <small>Message erreur</small>
+                        </div>
+                            
+                        <h2 class="headerFormItem">Adresse</h2>
+                        <div class="formItem">
+                            <label>Adresse</label> : 
+                            <input type="text" name="adresse" id="adresse" />
+                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-exclamation-circle"></i>
+                            <small>Message erreur</small>
+                        </div>
 
-                        </p>
-                        <p>
-                            <label>Ville</label> : <input type="text" name="ville" id="ville" />
-                        </p>
-                        <p>
-                            <label>Pays</label> : <input type="text" name="pays"  id="pays"/>
-                        </p>
-                        <p>
-                            <label>Téléphone</label> : <input type="tel" name="telephone" id="telephone" />
-                            <p class="erreurNumero"></p>
+                        <div class="formItem" >
+                            <label>Code Postal</label> : 
+                            <input type="text" name="codePostal" id="codePostal" />
+                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-exclamation-circle"></i>
+                            <small>Message erreur</small>
+                        </div>
 
-                        </p>
-                        <input type="submit" name="valider" value="Envoyer">
+                        <div class="formItem">
+                            <label>Ville</label> : 
+                            <input type="text" name="ville" id="ville" />
+                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-exclamation-circle"></i>
+                            <small>Message erreur</small>
+                        </div>
+
+                        <div class="formItem">
+                            <label>Pays</label> : 
+                            <input type="text" name="pays"  id="pays"/>
+                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-exclamation-circle"></i>
+                            <small>Message erreur</small>
+                        </div>
+
+                        <div class="formItem">
+                            <label>Téléphone</label> : 
+                            <input type="tel" name="telephone" id="telephone" />
+                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-exclamation-circle"></i>
+                            <small>Message erreur</small>
+                        </div>
+
+                        <div>
+                            <input type="submit" name="valider" value="Envoyer">
+                        </div> 
                     </form>
 
                     <p id="erreurForm"></p>

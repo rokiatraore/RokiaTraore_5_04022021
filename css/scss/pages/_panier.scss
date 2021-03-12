@@ -1,0 +1,87 @@
+img{
+    
+        height: 287px;
+        object-fit: cover;
+}
+
+.fiche{
+    display: flex;
+}
+
+/* ---------------------------- PAGE COMMANDE ----------------------------*/
+
+.containerForm{
+    overflow: hidden;
+    width: 400px;
+    max-width: 100%;
+    
+}
+
+.headerForm{
+    background-color: black;
+    padding: 20px 40px;
+}
+
+.headerForm h1{
+   margin: 0;
+}
+
+#form{
+    padding: 30px 40px
+
+}
+
+.formItem{
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+.formItem label{
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.formItem input{
+    border: 2px solid black ;
+    border-radius: 4px;
+    display: block;
+    font-size: 14px;
+    padding:10px;
+    width: 100%;
+}
+
+.formItem.valide input{
+    border-color: green;
+}
+
+.formItem.invalide input{
+    border-color: red;
+}
+
+.formItem i{
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    visibility: hidden;
+}
+
+.formItem.formItem.valide i.fa-check-circle{
+    visibility: visible;
+    color: green;
+}
+.formItem.formItem.invalide i.fa-check-circle{
+    visibility: visible;
+    color: red;
+}
+.formItem small {
+    visibility: hidden;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.formItem.invalide small{
+    visibility: visible;
+    color: red;
+}
