@@ -4,15 +4,25 @@
                 <meta charset="utf-8"/>
                 <link rel="stylesheet" href="css/style.css">
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+                <!--ICONE-->
+                <script src="https://kit.fontawesome.com/6b55ea15fb.js" crossorigin="anonymous"></script>
                 <title> Ornico </title>
         </head>
         
         <body>
             <!-- Nav -->
-            <nav>
-                <img src="C:/Users/konat/Documents/Openclassrooms/P5/front-end/img/logo.png" alt="logo"/>
+            <nav class="nav">
+                <div class="navbar-center">
+                        <img class="logoNav" src="C:/Users/konat/Documents/Openclassrooms/P5/front-end/img/logo.png" alt="logo"/>
+                    <a href="file:///C:/Users/konat/Documents/Openclassrooms/P5/front-end/panier.html" class="panierBtn">
+                        <span class="panierIcone">
+                            <i class="fas fa-cart-plus iconePanier"></i>
+                        </span>
+                        <div id="compteurPanier">Pa 0</div>
+                    </a>
+                </div>
             </nav>
+            
             <!-- Hero -->
             <header class="hero">
                 <div class="banniere">
@@ -21,10 +31,12 @@
             </header>
 
             <main>
+                <!-- Message Erreur -->
                 <div>
                     <h1 id="erreur"></h1>
                 </div>
-                <div id="ficheProduit"></div>
+                <!-- Affichage Produits -->
+                <div id="products"></div>
             </main>
 
             <script src="index.js"></script>

@@ -1,5 +1,5 @@
 const messageErreur = document.getElementById('erreur');
-const ficheProduit = document.getElementById('ficheProduit');
+const ficheProduit = document.getElementById('products');
 
 // Création d'un nouvel objet de type XMLHttpRequest
 var request = new XMLHttpRequest();
@@ -18,16 +18,17 @@ request.onreadystatechange = function(){
         //Afficher les produits dans la page accueil HTML
         response.forEach ( produit => {
             ficheProduit.innerHTML += 
-            `<figure>    
-                <img src=${produit.imageUrl}>
-                <figcaption>
-                    <h2>${produit.name}</h2>
-                    <p>${produit.description}</p>
-                    <p>${produit.price}</p>
-                    <p>${produit.colors}</p>
-                    <a href="./produit.html?${produit._id}">Voir le produit</a>
-                </figcaption> 
-            </figure>`
+            `
+            <article class="product">
+                <div class="containerProduct">
+                    <img src=${produit.imageUrl} alt = "Nounours" class="imgProduct">
+                    <a class="btnVoirProduit" data-id="1" href="./produit.html?${produit._id}">Voir le produit</a>
+                </div>
+                <h3>${produit.name}</h3>
+                <h4>${produit.price/100}.00€</h4>
+            </article>
+            
+            `
             
 
         });

@@ -2,32 +2,60 @@
 	<html lang="fr">
 		<head>
                 <meta charset="utf-8"/>
-                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
                 <link rel="stylesheet" href="css/style.css">
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
                 <!--ICONE-->
                 <script src="https://kit.fontawesome.com/6b55ea15fb.js" crossorigin="anonymous"></script>
-                <title> Ornico </title> 
+                <title> Ornico </title>
         </head>
         
         <body>
+            <!-- Nav -->
+            <nav class="nav">
+                <div class="navbar-center">
+                        <img class="logoNav" src="C:/Users/konat/Documents/Openclassrooms/P5/front-end/img/logo.png" alt="logo"/>
+                    <a href="file:///C:/Users/konat/Documents/Openclassrooms/P5/front-end/panier.html" class="panierBtn">
+                        <span class="panierIcone">
+                            <i class="fas fa-cart-plus iconePanier"></i>
+                        </span>
+                        <div id="compteurPanier">Pa 0</div>
+                    </a>
+                </div>
+            </nav>
+            
             <header>
-                <a href="file:///C:/Users/konat/Documents/Openclassrooms/P5/front-end/panier.html" >Panier <span id="compteurPanier2">0</span></a>
             </header>
             <main>
                 <div>
                     <h1 id="erreur"></h1>
                 </div>
-
-                <div class="containerProduit">
-                    <div class="headerProduit">
-                        <h3 class="produit">Produit</h3>
-                        <h3 class="prix">Prix</h3>
-                        <h3 class="qty">Quantité</h3>
-                        <h3 class="total">Total</h3>
-                    </div>
+                <div class="titreMonPanier">
+                    <h1>MON PANIER</h1>
                 </div>
-                <div class="produitAjouter" ></div>
-                <div class="totalProduits"></div>
+                
+                <table class="tableauStyle">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Produit</th>
+                            <th>Couleur</th>
+                            <th>Prix</th>
+                            <th>Quantité</th>
+                            <th>Total</th>
+                        </tr>
+                        <tfoot>
+                            <tr>
+                                <th colspan="5">Prix Total</th>
+                                <th class="totalProduits" ></th>
+                            </tr>
+                        </tfoot>
+                    </thead>
+                    <tbody class="produitAjouter" ></tbody>
+                    
+                </table>
+
+                
+                <div ></div>
 
                 <div class="containerForm">
                     <div class="headerForm">

@@ -12,20 +12,24 @@ function affichageProduitPanier (){
     if(produits && containerproduits ){
         Object.values(produits).forEach(ficheProduit => {
             containerproduits.innerHTML += 
-                `<div class="fiche" >
-                    <button class="btnSupprimer" id=${ficheProduit.name}-${ficheProduit.colors}><i class="fas fa-times" ></i></button>
-                    <img class="produit" src=${ficheProduit.picture}>
-                    <span class="produit" id ="${ficheProduit.id}">${ficheProduit.name}</span>
-                    <span class="couleur">${ficheProduit.colors}</span>
-                    <div class="prix">${ficheProduit.price}</div>
-                    <div class="qty" >
-                        <button class="btnQtyDown" id=${ficheProduit.id}-${ficheProduit.colors} ><i class="fas fa-arrow-alt-circle-down " ></i></button>
-                        <span class="qty">${ficheProduit.qty}</span>
-                        <button class="btnQtyUp" id=${ficheProduit.colors}-${ficheProduit.id} ><i class="fas fa-arrow-circle-up"></i></button>
-                    </div>
-
-                    <div class="total">${ficheProduit.price * ficheProduit.qty}</div>
-                </div>`
+                `
+                    <tr class="fiche" >
+                        <td><button class="btnSupprimer" id=${ficheProduit.name}-${ficheProduit.colors}>X</button></td>
+                        <td>
+                        <img class="produit" src=${ficheProduit.picture}>
+                        <span class="nom" id ="${ficheProduit.id}">${ficheProduit.name}</span></td>
+                        <td>${ficheProduit.colors}</td>
+                        
+                        <td class="prix">${ficheProduit.price}</td>
+                        <td class="qty" >
+                            <button class="btnQtyDown" id=${ficheProduit.id}-${ficheProduit.colors} ><i class="fas fa-arrow-down"></i></button>
+                            <span class="qty">${ficheProduit.qty}</span>
+                            <button class="btnQtyUp" id=${ficheProduit.colors}-${ficheProduit.id} ><i class="fas fa-arrow-up"></i></button>
+                        </td>
+                        <td class="total">${ficheProduit.price * ficheProduit.qty}</td>
+                    </tr>
+                    
+                `
             
             
         if (totalProduits && containerTotalProduits){
@@ -226,6 +230,7 @@ function actualisePage(){
 actualisePage();
 
 // ---------------------------- FORMULAIRE COMMANDE ----------------------------
+
 var form = document.getElementById("form")
 var nom = document.getElementById('nom')
 var prenom = document.getElementById('prenom')
@@ -252,9 +257,7 @@ var regexpEmail = new RegExp (/^[a-zA-Z0-9._-]+[@]{1}[a-zA-Z0-9._-]+[.]{1}[a-zA-
 form.addEventListener("submit", function(e){
     e.preventDefault();
     if(inputValide()){
-        alert("b")
        sendBackEnd()
-       //window.location.href = "http://order.html"
     }
     
 });
@@ -403,11 +406,11 @@ function messageErreur(input, message){
     formItem.className = 'formItem invalide'
 }
 
-function messageValide(input, message){
+function messageValide(input){
     var formItem = input.parentElement; // .formItem
     var small = formItem.querySelector('small')
 
-    //Mettre en vert la bordure en ajoutant "invalide" à la classe .formItem
+    //Mettre en vert la bordure en ajoutant "valide" à la classe .formItem
     formItem.className = 'formItem valide'
 
 }

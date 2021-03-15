@@ -20,14 +20,24 @@ request.onreadystatechange = function () {
     /* ---------------------------- STRUCTURE FICHE PRODUIT ----------------------------*/
 
         document.getElementById('produit').innerHTML += 
-            `<figure>    
-                <img src=${response.imageUrl}>
-                <figcaption>
-                    <h2>${response.name}</h2>
-                    <p>${response.description}</p>
-                    <p>${response.price/100}.00€</p>
-                </figcaption> 
-            </figure>`
+            `<h1 class="titreFicheProduit">${response.name}</h1>
+            <div class="containerFicheProduit">
+                <div class="imgFicheProduit">    
+                    <img src=${response.imageUrl}>
+                </div>
+                <div class="descriptionFicheProduit">
+                    <h4>${response.price/100}.00€</h4>
+                    <p class ="description">${response.description}</p>
+                    <form class="optionCouleur">
+                        <label classe="titreOptionCouleur">Choisir la couleur :</label>
+                        <select name="couleur" id="couleur"></select>
+                    </form>
+                    <div class="separateur"></div>
+                    <div class="btnAjoutPanier">
+                        <a href="#" id="panier">Ajouter au panier</a>
+                    </div>
+                </div> 
+            </div>`
 
         //Liste déroulante des choix de couleurs  
         for(i=0; i < response.colors.length; i++){ 

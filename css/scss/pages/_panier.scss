@@ -1,13 +1,38 @@
-img{
+.titreMonPanier {
+    display: flex;
+    justify-content: center;
+    margin: 37px 0px 37px 0px;
+}
+.tableauStyle{
+    margin: auto;
+    width: 57%;
+
+    thead{
+        background-color:#cb7c51b8 ;
+        color: white;
+    }
+
+    tr{
+        font-size: 18px;
+    }
+    tfoot{
+        border-top: solid 1px #2125290d;
+    }
+}
+.produit{
     
-        height: 287px;
+        height: 100px;
         object-fit: cover;
 }
-
-.fiche{
-    display: flex;
+.btnQtyDown, .btnQtyUp{
+    background: white;
+    border: none;
 }
-
+.btnSupprimer{
+    background: #cb7c51b8;
+    border: none;
+    color: white;
+}
 /* ---------------------------- PAGE COMMANDE ----------------------------*/
 
 .containerForm{

@@ -1,16 +1,65 @@
-nav{
-    display: flex;
-    justify-content: center;
-    padding: 15px;
-    background-color: #F1E7F3;
+//Keyframes
+@keyframes slideright{
+    0%{
+        transform: translateX(50px);
+        opacity: 0;
+    }
 
-    img{
-        width: 200px;
+    100%{
+        transform: translateX(0);
+        opacity: 1;
     }
 }
+/* ---------------------------- NAVBAR ----------------------------*/
+.nav{
+    position: sticky;
+    top: 0;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    padding: 15px;
+    background-color: #F1E7F3;
+    z-index: 1;
+
+    .logoNav{
+        width: 200px;
+        height: 42px;
+    }
+    .navbar-center{
+        width: 100%;
+        max-width: 1170px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 1.5rem;
+    }
+
+    .panierBtn{
+        position: relative;
+        cursor: pointer;
+
+        .panierIcone{
+            color: black;
+        }
+    }
+    .iconePanier{
+        font-size: 1.5rem;
+    }
+
+    #compteurPanier{
+        position: absolute;
+        top: -12px;
+        right: -12px;
+        background: white;
+        padding: 0 5px;
+        border-radius: 30%;
+        color: black;
+    }
+    
+}
 .hero{
-    min-height: calc(100vh - 60px);
-    background: url("C:/Users/konat/Documents/Openclassrooms/P5/front-end/img/nounours.jpg")center/cover no-repeat;
+    min-height: calc(85vh - 60px);
+    background: url("C:/Users/konat/Documents/Openclassrooms/P5/front-end/img/d.jpg")center/cover no-repeat;
     display: flex;
     align-self: center;
     justify-content: center;
@@ -19,7 +68,7 @@ nav{
         background: #ffffffa3;
         display: flex;
         padding: 2rem;
-        margin: 85px;
+        margin: 141px;
         align-items: center;
 
         .banniereTitre{
@@ -52,27 +101,71 @@ nav{
     }
 }
 
-#ficheProduit{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    position: relative;
-    margin: 169px;
+/* ---------------------------- PRODUCTS ----------------------------*/
+#products{
+    width: 74vw;
+    margin: 0 auto;
+    max-width: 1170px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap:1.5rem;
+    grid-row-gap:2rem;
 
-    figure{
-        width: 303px;
-        height: auto;
-        margin: 32px 29px;
-        border: solid 5px white;
-        border-radius: 20px;
-        background-color: white;
+    .containerProduct{
+        position: relative;
         overflow: hidden;
+        &:hover .btnVoirProduit{
+            transform: translateX(0);
+            animation: slideright .5s;
 
-        img{
+        }
+
+        &:hover .imgProduct{
+            opacity: 0.5;
+        }
+
+        .imgProduct{
+            display: block;
             width: 100%;
-            height: 162px;
-            object-fit: cover;
+            min-height: 12rem;
+        }
+
+        .btnVoirProduit{
+            position: absolute;
+            top: 70%;
+            color: white;
+            right: 0;
+            border: none;
+            background:#d79de2 ;
+            padding: 0.5rem 0.75rem;
+            cursor: pointer;
+            transform: translateX(101%);
+
+            &:hover{
+                color: white;
+                
+            }
         }
     }
+
+    .product h3 {
+        text-transform: capitalize;
+        font-size: 1.1rem;
+        margin-top: 1rem;
+        text-align: center;
+    }
+
+    .product h4 {
+        margin-top: 0.7rem;
+        text-align:center;
+        font-size: 1.1rem;
+        color:#d79de2 ;
+    }
 }
+
+
+
+
+
+
 

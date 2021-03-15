@@ -1,14 +1,50 @@
-nav {
+@keyframes slideright {
+  0% {
+    transform: translateX(50px);
+    opacity: 0; }
+  100% {
+    transform: translateX(0);
+    opacity: 1; } }
+
+/* ---------------------------- NAVBAR ----------------------------*/
+.nav {
+  position: sticky;
+  top: 0;
+  height: 60px;
+  width: 100%;
   display: flex;
-  justify-content: center;
   padding: 15px;
-  background-color: #F1E7F3; }
-  nav img {
-    width: 200px; }
+  background-color: #F1E7F3;
+  z-index: 1; }
+  .nav .logoNav {
+    width: 200px;
+    height: 42px; }
+  .nav .navbar-center {
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1.5rem; }
+  .nav .panierBtn {
+    position: relative;
+    cursor: pointer; }
+    .nav .panierBtn .panierIcone {
+      color: black; }
+  .nav .iconePanier {
+    font-size: 1.5rem; }
+  .nav #compteurPanier {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    background: white;
+    padding: 0 5px;
+    border-radius: 30%;
+    color: black; }
 
 .hero {
-  min-height: calc(100vh - 60px);
-  background: url("C:/Users/konat/Documents/Openclassrooms/P5/front-end/img/nounours.jpg") center/cover no-repeat;
+  min-height: calc(85vh - 60px);
+  background: url("C:/Users/konat/Documents/Openclassrooms/P5/front-end/img/d.jpg") center/cover no-repeat;
   display: flex;
   align-self: center;
   justify-content: center; }
@@ -16,7 +52,7 @@ nav {
     background: #ffffffa3;
     display: flex;
     padding: 2rem;
-    margin: 85px;
+    margin: 141px;
     align-items: center; }
     .hero .banniere .banniereTitre {
       margin-bottom: 3rem;
@@ -43,31 +79,78 @@ nav {
     font-weight: 300;
     background: url("C:/Users/konat/Documents/Openclassrooms/P5/front-end/img/nounours.jpg") center/cover; }
 
-#ficheProduit {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  position: relative;
-  margin: 169px; }
-  #ficheProduit figure {
-    width: 303px;
-    height: auto;
-    margin: 32px 29px;
-    border: solid 5px white;
-    border-radius: 20px;
-    background-color: white;
+/* ---------------------------- PRODUCTS ----------------------------*/
+#products {
+  width: 74vw;
+  margin: 0 auto;
+  max-width: 1170px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 1.5rem;
+  grid-row-gap: 2rem; }
+  #products .containerProduct {
+    position: relative;
     overflow: hidden; }
-    #ficheProduit figure img {
+    #products .containerProduct:hover .btnVoirProduit {
+      transform: translateX(0);
+      animation: slideright .5s; }
+    #products .containerProduct:hover .imgProduct {
+      opacity: 0.5; }
+    #products .containerProduct .imgProduct {
+      display: block;
       width: 100%;
-      height: 162px;
-      object-fit: cover; }
+      min-height: 12rem; }
+    #products .containerProduct .btnVoirProduit {
+      position: absolute;
+      top: 70%;
+      color: white;
+      right: 0;
+      border: none;
+      background: #d79de2;
+      padding: 0.5rem 0.75rem;
+      cursor: pointer;
+      transform: translateX(101%); }
+      #products .containerProduct .btnVoirProduit:hover {
+        color: white; }
+  #products .product h3 {
+    text-transform: capitalize;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    text-align: center; }
+  #products .product h4 {
+    margin-top: 0.7rem;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #d79de2; }
 
-img {
-  height: 287px;
+.titreMonPanier {
+  display: flex;
+  justify-content: center;
+  margin: 37px 0px 37px 0px; }
+
+.tableauStyle {
+  margin: auto;
+  width: 57%; }
+  .tableauStyle thead {
+    background-color: #cb7c51b8;
+    color: white; }
+  .tableauStyle tr {
+    font-size: 18px; }
+  .tableauStyle tfoot {
+    border-top: solid 1px #2125290d; }
+
+.produit {
+  height: 100px;
   object-fit: cover; }
 
-.fiche {
-  display: flex; }
+.btnQtyDown, .btnQtyUp {
+  background: white;
+  border: none; }
+
+.btnSupprimer {
+  background: #cb7c51b8;
+  border: none;
+  color: white; }
 
 /* ---------------------------- PAGE COMMANDE ----------------------------*/
 .containerForm {
@@ -131,3 +214,47 @@ img {
 .formItem.invalide small {
   visibility: visible;
   color: red; }
+
+#produit {
+  margin: 0 30px 0 30px; }
+
+.titreFicheProduit {
+  text-align: center;
+  padding: 17px 0 41px 0; }
+
+.containerFicheProduit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 39px; }
+  .containerFicheProduit .imgFicheProduit {
+    margin-right: 41px; }
+    .containerFicheProduit .imgFicheProduit img {
+      width: 100%; }
+  .containerFicheProduit .description {
+    text-transform: capitalize;
+    font-size: 1.5rem;
+    margin-top: 1rem; }
+  .containerFicheProduit .descriptionFicheProduit h4 {
+    color: #cb7c51b8;
+    text-align: justify; }
+  .containerFicheProduit .optionCouleur {
+    margin-top: 41px;
+    text-align: center; }
+  .containerFicheProduit .titreOptionCouleur {
+    font-weight: 600; }
+  .containerFicheProduit .btnAjoutPanier {
+    display: flex;
+    justify-content: center; }
+    .containerFicheProduit .btnAjoutPanier #panier {
+      color: white;
+      padding: 10px;
+      width: 50%;
+      text-align: center;
+      background-color: #cb7c51b8; }
+
+.separateur {
+  width: 47rem;
+  background: #8080802e;
+  height: 1px;
+  margin: 26px; }
