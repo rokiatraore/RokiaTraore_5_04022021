@@ -13,12 +13,12 @@
             <!-- Nav -->
             <nav class="nav">
                 <div class="navbar-center">
-                        <img class="logoNav" src="C:/Users/konat/Documents/Openclassrooms/P5/front-end/img/logo.png" alt="logo"/>
+                        <a href="file:///C:/Users/konat/Documents/Openclassrooms/P5/front-end/index.html"><img class="logoNav" src="C:/Users/konat/Documents/Openclassrooms/P5/front-end/img/logo.png" alt="logo"/></a>
                     <a href="file:///C:/Users/konat/Documents/Openclassrooms/P5/front-end/panier.html" class="panierBtn">
                         <span class="panierIcone">
                             <i class="fas fa-cart-plus iconePanier"></i>
                         </span>
-                        <div id="compteurPanier">Pa 0</div>
+                        <div id="compteurPanier2">0</div>
                     </a>
                 </div>
             </nav>
@@ -29,6 +29,7 @@
                 <div>
                     <h1 id="erreur"></h1>
                 </div>
+
                 <div class="titreMonPanier">
                     <h1>MON PANIER</h1>
                 </div>
@@ -51,91 +52,28 @@
                         </tfoot>
                     </thead>
                     <tbody class="produitAjouter" ></tbody>
-                    
                 </table>
+                <div class="containerCommander">
+                    <button class="btnCommander">Commander</button>
+                </div>
 
-                
-                <div ></div>
+                <div class="containerForm"></div>
 
-                <div class="containerForm">
-                    <div class="headerForm">
-                        <h1>Passer commande</h1>
-                    </div>
-                    <form method="POST" id="form">
-                        <h2 class="headerFormItem">Informations personnelles</h2>
-                        <div class="formItem">
-                            <label>Nom</label> : 
-                            <input type="text" name="nom" id="nom" placeholder="nom" />
-                            <i class="fas fa-check-circle"></i>
-                            <i class="fas fa-exclamation-circle"></i>
-                            <small>Message erreur</small>
-                        </div>
-                        
-                        <div class="formItem" >
-                            <label>Prénom</label> : 
-                            <input type="text" name="prenom" id="prenom"  placeholder="prénom" />
-                            <i class="fas fa-check-circle"></i>
-                            <i class="fas fa-exclamation-circle"></i>
-                            <small>Message erreur</small>
-                        </div>
-                        
-                        <div class="formItem">
-                            <label>E-mail</label> : 
-                            <input type="text" name="email" id="email" placeholder="EMAIL@EXEMPLE.COM" />
-                            <i class="fas fa-check-circle"></i>
-                            <i class="fas fa-exclamation-circle"></i>
-                            <small>Message erreur</small>
-                        </div>
-                            
-                        <h2 class="headerFormItem">Adresse</h2>
-                        <div class="formItem">
-                            <label>Adresse</label> : 
-                            <input type="text" name="adresse" id="adresse" />
-                            <i class="fas fa-check-circle"></i>
-                            <i class="fas fa-exclamation-circle"></i>
-                            <small>Message erreur</small>
-                        </div>
-
-                        <div class="formItem" >
-                            <label>Code Postal</label> : 
-                            <input type="text" name="codePostal" id="codePostal" />
-                            <i class="fas fa-check-circle"></i>
-                            <i class="fas fa-exclamation-circle"></i>
-                            <small>Message erreur</small>
-                        </div>
-
-                        <div class="formItem">
-                            <label>Ville</label> : 
-                            <input type="text" name="ville" id="ville" />
-                            <i class="fas fa-check-circle"></i>
-                            <i class="fas fa-exclamation-circle"></i>
-                            <small>Message erreur</small>
-                        </div>
-
-                        <div class="formItem">
-                            <label>Pays</label> : 
-                            <input type="text" name="pays"  id="pays"/>
-                            <i class="fas fa-check-circle"></i>
-                            <i class="fas fa-exclamation-circle"></i>
-                            <small>Message erreur</small>
-                        </div>
-
-                        <div class="formItem">
-                            <label>Téléphone</label> : 
-                            <input type="tel" name="telephone" id="telephone" />
-                            <i class="fas fa-check-circle"></i>
-                            <i class="fas fa-exclamation-circle"></i>
-                            <small>Message erreur</small>
-                        </div>
-
-                        <div>
-                            <input type="submit" name="valider" value="Envoyer">
-                        </div> 
-                    </form>
-
-                    <p id="erreurForm"></p>
+               
+                <p id="erreurForm"></p>
                 </div>
             </main>
+
+            <footer class="footer">
+                <div class="newsletter">
+                    <h2 class="titreNewsletter"><span>abonnez-vous à notre newsletter</span></h2>
+                    <form class="formNewsletter">
+                    <input type="text" class="emailNewsletter" name="email"placeholder="Veuillez saisir votre adresse e-mail ici">
+                </div>
+                <a class="lienFooter" href="#"><span>F.A.Q</span></a>
+                <a class="lienFooter" href="#"> Mentions légales</a>
+                <a class="lienFooter" href="mailto:contact@ohmyfood.fr">Contact</a>
+            </footer>
             
             <script src="panier.js"></script>
         </body>

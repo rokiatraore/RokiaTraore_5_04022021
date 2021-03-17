@@ -229,9 +229,101 @@ function actualisePage(){
 }
 actualisePage();
 
+// ---------------------------- BOUTON COMMANDER ----------------------------
+
+var btnCommander = document.querySelector('.btnCommander')
+var containerForm = document.querySelector('.containerForm')
+console.log(containerForm)
+
+btnCommander.addEventListener("click", afficherFormulaire);
+
+function afficherFormulaire (){
+   containerForm.innerHTML += `
+   <form method="POST" id="form">
+                        <h2 class="headerFormItem">Informations personnelles</h2>
+                        <div class="formItem">
+                            <label>Nom</label> : 
+                            <input type="text" name="nom" id="nom" />
+                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-exclamation-circle"></i>
+                            <small>Message erreur</small>
+                        </div>
+                        
+                        <div class="formItem" >
+                            <label>Prénom</label> : 
+                            <input type="text" name="prenom" id="prenom"   />
+                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-exclamation-circle"></i>
+                            <small>Message erreur</small>
+                        </div>
+                        
+                        <div class="formItem">
+                            <label>E-mail</label> : 
+                            <input type="text" name="email" id="email" />
+                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-exclamation-circle"></i>
+                            <small>Message erreur</small>
+                        </div>
+                            
+                        <h2 class="headerFormItem">Adresse</h2>
+                        <div class="formItem">
+                            <label>Adresse</label> : 
+                            <input type="text" name="adresse" id="adresse" />
+                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-exclamation-circle"></i>
+                            <small>Message erreur</small>
+                        </div>
+
+                        <div class="formItem" >
+                            <label>Code Postal</label> : 
+                            <input type="text" name="codePostal" id="codePostal" />
+                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-exclamation-circle"></i>
+                            <small>Message erreur</small>
+                        </div>
+
+                        <div class="formItem">
+                            <label>Ville</label> : 
+                            <input type="text" name="ville" id="ville" />
+                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-exclamation-circle"></i>
+                            <small>Message erreur</small>
+                        </div>
+
+                        <div class="formItem">
+                            <label>Pays</label> : 
+                            <input type="text" name="pays"  id="pays"/>
+                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-exclamation-circle"></i>
+                            <small>Message erreur</small>
+                        
+                        <div class="formItem">
+                            <label>Téléphone</label> : 
+                            <input type="tel" name="telephone" id="telephone" />
+                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-exclamation-circle"></i>
+                            <small>Message erreur</small>
+                        </div>
+    
+
+                            <div class = "containerBtnCommanderForm">
+                            <input class = "btnCommanderForm" type="submit" name="valider" value="Commander">
+                        </div> 
+                    </form>
+   `
+
 // ---------------------------- FORMULAIRE COMMANDE ----------------------------
 
-var form = document.getElementById("form")
+   var form = document.getElementById("form")
+   form.addEventListener("submit", function(e){
+    e.preventDefault();
+    if(inputValide()){
+       sendBackEnd()
+    }
+    
+});
+
+//var form = document.getElementById("form")
 var nom = document.getElementById('nom')
 var prenom = document.getElementById('prenom')
 var adresse = document.getElementById('adresse')
@@ -254,13 +346,13 @@ var regexpcodePostal = /^[0-9]{5}$/
     */
 var regexpEmail = new RegExp (/^[a-zA-Z0-9._-]+[@]{1}[a-zA-Z0-9._-]+[.]{1}[a-zA-Z]{2,3}$/)
 
-form.addEventListener("submit", function(e){
+/*form.addEventListener("submit", function(e){
     e.preventDefault();
     if(inputValide()){
        sendBackEnd()
     }
     
-});
+});*/
 
 function inputValide(){
     //Mettre dans une variable la valeur des inputs
@@ -460,9 +552,13 @@ function sendBackEnd (){
 
 }
 
+}
+
+
+
+
+
+
 //sendBackEnd ()
-
-
-
 
 

@@ -46,7 +46,7 @@
         font-size: 1.5rem;
     }
 
-    #compteurPanier{
+    #compteurPanier, #compteurPanier2,#compteurPanier3 {
         position: absolute;
         top: -12px;
         right: -12px;
@@ -102,6 +102,20 @@
 }
 
 /* ---------------------------- PRODUCTS ----------------------------*/
+.titreIndex{
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: 300;
+    margin: 75px 0 23px 0;
+}
+.separateurIndex{
+    background: #c97b56;
+    width: 10%;
+    margin: auto;
+    height: 2px;
+    margin-bottom: 40px;
+}
+
 #products{
     width: 74vw;
     margin: 0 auto;
@@ -125,9 +139,9 @@
         }
 
         .imgProduct{
-            display: block;
             width: 100%;
-            min-height: 12rem;
+            border-radius: 76px;
+
         }
 
         .btnVoirProduit{
