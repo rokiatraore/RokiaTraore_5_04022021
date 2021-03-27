@@ -4,11 +4,14 @@
                 <meta charset="utf-8"/>
                 <link rel="stylesheet" href="css/style.css">
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+                <!--RESPONSIVE -->
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <!--FAVICONE-->
+                <link rel="icon" type="image/png" href="C:/Users/konat/Documents/Openclassrooms/P5/front-end/img/logo.png">
                 <!--ICONE-->
                 <script src="https://kit.fontawesome.com/6b55ea15fb.js" crossorigin="anonymous"></script>
                 <title> Ornico </title>
         </head>
-        
         <body>
             <!-- Nav -->
             <nav class="nav">
@@ -18,29 +21,24 @@
                         <span class="panierIcone">
                             <i class="fas fa-cart-plus iconePanier"></i>
                         </span>
-                        <div id="compteurPanier3">0</div>
+                        <div class="compteurPanier">0</div>
                     </a>
                 </div>
             </nav>
-            
             <!-- Hero -->
             <header class="hero">
                 <div class="banniere">
                     <h1 class="banniereTitre">Découvrez notre sélection </br>de Nounours</h1>
                 </div>
             </header>
-
             <main>
-                <!-- Message Erreur -->
-                <div>
-                    <h1 id="erreur"></h1>
-                </div>
+                <!-- Titre Accrocheur -->
                <h1 class="titreIndex">Bienvenue dans le monde des bisounours</h1>
                <div class="separateurIndex"></div> 
                 <!-- Affichage Produits -->
                 <div id="products"></div>
             </main>
-
+            <!-- Footer -->
             <footer class="footer">
                 <div class="newsletter">
                     <h2 class="titreNewsletter"><span>abonnez-vous à notre newsletter</span></h2>
@@ -51,8 +49,10 @@
                 <a class="lienFooter" href="#"> Mentions légales</a>
                 <a class="lienFooter" href="mailto:contact@ohmyfood.fr">Contact</a>
             </footer>
-
+            <!-- Message Erreur -->
+            <div>
+                <h1 class="erreur"></h1>
+            </div>
             <script src="index.js"></script>
-        </body>
-        
+        </body>  
 </html>

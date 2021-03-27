@@ -46,7 +46,7 @@
         font-size: 1.5rem;
     }
 
-    #compteurPanier, #compteurPanier2,#compteurPanier3 {
+    .compteurPanier {
         position: absolute;
         top: -12px;
         right: -12px;
@@ -58,7 +58,6 @@
     
 }
 .hero{
-    min-height: calc(85vh - 60px);
     background: url("C:/Users/konat/Documents/Openclassrooms/P5/front-end/img/d.jpg")center/cover no-repeat;
     display: flex;
     align-self: center;
@@ -176,9 +175,6 @@
         color:#d79de2 ;
     }
 }
-
-
-
 
 
 

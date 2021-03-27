@@ -4,6 +4,10 @@
                 <meta charset="utf-8"/>
                 <link rel="stylesheet" href="css/style.css">
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+                <!--RESPONSIVE -->
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <!--FAVICONE-->
+                <link rel="icon" type="image/png" href="C:/Users/konat/Documents/Openclassrooms/P5/front-end/img/logo.png">
                 <!--ICONE-->
                 <script src="https://kit.fontawesome.com/6b55ea15fb.js" crossorigin="anonymous"></script>
                 <title> Ornico </title>
@@ -18,22 +22,15 @@
                         <span class="panierIcone">
                             <i class="fas fa-cart-plus iconePanier"></i>
                         </span>
-                        <div id="compteurPanier2">0</div>
+                        <div class="compteurPanier">0</div>
                     </a>
                 </div>
             </nav>
-            
-            <header>
-            </header>
-            <main>
-                <div>
-                    <h1 id="erreur"></h1>
-                </div>
-
+            <main> 
                 <div class="titreMonPanier">
                     <h1>MON PANIER</h1>
                 </div>
-                
+                <!-- Structure tableau produits -->
                 <table class="tableauStyle">
                     <thead>
                         <tr>
@@ -51,19 +48,16 @@
                             </tr>
                         </tfoot>
                     </thead>
-                    <tbody class="produitAjouter" ></tbody>
+                    <!-- Affichage produits -->
+                    <tbody class="produitAjouter"></tbody>
                 </table>
                 <div class="containerCommander">
                     <button class="btnCommander">Commander</button>
                 </div>
-
+                <!-- Formulaire de commande -->
                 <div class="containerForm"></div>
-
-               
-                <p id="erreurForm"></p>
-                </div>
             </main>
-
+            <!-- Footer -->
             <footer class="footer">
                 <div class="newsletter">
                     <h2 class="titreNewsletter"><span>abonnez-vous à notre newsletter</span></h2>

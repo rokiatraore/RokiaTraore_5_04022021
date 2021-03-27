@@ -2,7 +2,7 @@
 //Récupération du paramètre URL
 var position = window.location.href.indexOf('?');
 var idUrl = window.location.href.substring(position + 1);
-//console.log(idUrl)
+console.log(idUrl)
 
 // Création d'un nouvel objet de type XMLHttpRequest
 var request = new XMLHttpRequest(); 
@@ -16,6 +16,7 @@ request.onreadystatechange = function () {
       if (this.status == 200) {
         //Conversion JSON > JS
         var response = JSON.parse(this.responseText);
+        console.log(response)
     
     /* ---------------------------- STRUCTURE FICHE PRODUIT ----------------------------*/
 
@@ -32,9 +33,8 @@ request.onreadystatechange = function () {
                         <label classe="titreOptionCouleur">Choisir la couleur :</label>
                         <select name="couleur" id="couleur"></select>
                     </form>
-                    <div class="separateur"></div>
-                    <div class="btnAjoutPanier">
-                        <a href="#" id="panier">Ajouter au panier</a>
+                    <div class="containerBtnAjoutPanier">
+                        <a href="#" id="btnAjouterPanier">Ajouter au panier</a>
                     </div>
                 </div> 
             </div>`
@@ -47,10 +47,10 @@ request.onreadystatechange = function () {
     /* ---------------------------- BOUTON AJOUTER AU PANIER ----------------------------*/
         
         //Sélection du bouton dans le code
-        var boutonPanier = document.getElementById('panier');
+        var btnAjouterPanier = document.getElementById('btnAjouterPanier');
 
         //Réaction au clic de l'utilisateur sur le bouton "ajouter au panier" par l'appel d'une fonction
-        boutonPanier.addEventListener('click', ajoutArticlePanier );
+        btnAjouterPanier.addEventListener('click', ajoutArticlePanier );
         
         //  Appel des fonctions
         function ajoutArticlePanier (){
@@ -59,37 +59,37 @@ request.onreadystatechange = function () {
             totalPrix();
         };
 
-        //Sauvegarder le nombre de produits ajoutés au panier dans le localStorage
+        /* ----- Fonction : Sauvegarder le nombre de produits ajoutés au panier dans le localStorage ----- */
         function nombreArticlePanier(){
             var nombreProduit = localStorage.getItem('nombreArticlePanier');
      
             //Convertion string > number
             nombreProduit = parseInt(nombreProduit);
 
-        if(nombreProduit){
+            if(nombreProduit){
                 localStorage.setItem('nombreArticlePanier',nombreProduit + 1);
-                document.getElementById('compteurPanier').textContent =nombreProduit + 1;
+                document.querySelector('.compteurPanier').textContent =nombreProduit + 1;
             } 
             else {
                 localStorage.setItem('nombreArticlePanier',1);
-                document.getElementById('compteurPanier').textContent = 1;
+                document.querySelector('.compteurPanier').textContent = 1;
             }
         };
 
-        /*.Sauvegarder le nom du produit ajouté au panier dans le local storage,
+        /* ----- Fonction : 
+        .Sauvegarder le nom du produit ajouté au panier dans le local storage,
         .Modifier la couleur 
         .Augmenter la quantité d'un produit,
-        .Ajouter un nouveau produit selectionné dans le local storage.*/
+        .Ajouter un nouveau produit selectionné dans le local storage.----- */
         function produitLocalStorage (){
-
             var ficheProduit = JSON.parse(localStorage.getItem("produitDansLePanier"));
+            console.log(ficheProduit)
 
-            //Mettre les choix du formulaire dans une variable
-            var optionCouleur = document.getElementById("couleur");
-            console.log(optionCouleur);
+            //Mettre les choix de la couleur dans une variable
+            var optionsCouleur = document.getElementById("couleur");
 
             //Mettre la valeur de l'option selectionné dans une variable
-            var option = optionCouleur.value;
+            var option = optionsCouleur.value;
 
             //Ajouter propriété qty et couleur dans l'objet
             var produit = {
@@ -103,8 +103,9 @@ request.onreadystatechange = function () {
             }; 
             console.log(produit)
 
-            //Si le produit existe dans le LocalStorage alors incrémenter 1 à qty
-            if(ficheProduit != null /*&& ficheProduit[produit.name].name == produit.name && ficheProduit[produit.name].colors == produit.colors*/){
+            
+            if(ficheProduit != null){
+              
                 //Si le produit n'existe pas alors créer une nouvelle fiche produit
                 if(ficheProduit[`${produit.colors}-${produit.name}`] == undefined){
                     ficheProduit = {
@@ -115,64 +116,62 @@ request.onreadystatechange = function () {
                     console.log("conditions 3 - Créer fiche en cas de nouveau produit");
                 }
                 //Si le nom du produit du LocalStorage sont identique et la couleur différente alors créer un nouvelle fiche produit 
-                else if (ficheProduit[`${produit.colors}-${produit.name}`].name == produit.name && ficheProduit[`${produit.colors}-${produit.name}`].colors !== produit.colors){
+                else if (ficheProduit[`${produit.colors}-${produit.name}`].name == produit.name && 
+                        ficheProduit[`${produit.colors}-${produit.name}`].colors !== produit.colors){
                     ficheProduit = {
                         ...ficheProduit,
                         [`${produit.colors}-${produit.name}`] : produit
                          
                     }
                     console.log("conditions 4 - Créer une fiche si le nom est similaire mais couleur différente");
+                } 
 
-                }
+                //Si le produit existe dans le LocalStorage alors incrémenter 1 à qty
                 ficheProduit[`${produit.colors}-${produit.name}`].qty += 1;
                 console.log("conditions 2 - incrémenter + 1 qty fiche existente");
-                
-            }  
+            }
+            //Sinon créer une fiche  
             else {
                 produit.qty = 1;
                 ficheProduit = {
                     [`${produit.colors}-${produit.name}`] : produit
                 }
                 console.log("conditions 1 - Créer un fiche");
-
             }
-
-            localStorage.setItem("produitDansLePanier",JSON.stringify(ficheProduit)); 
-
-             
+            //Stocker les données dans le localStorage
+            localStorage.setItem("produitDansLePanier",JSON.stringify(ficheProduit));  
         };
 
-        //Mettre à jour le prix total des articles ajouté
+        /* ----- Fonction : Mettre à jour le prix total des articles ajouté ----- */
         function totalPrix(){
             var prix = localStorage.getItem("totalPrix");
 
+            //S'il y a un prix afficher alors additioner le prix du produit 
             if(prix != null){
                 prix = parseInt(prix);
                 localStorage.setItem("totalPrix", prix + response.price/100)
             }
+            //Sinon si c'est le 1er produit ajouté, afficher le prix du produit
             else{
                 localStorage.setItem("totalPrix", response.price/100);
             } 
         }
         
 
-        //Garder la même valeur du panier en cas d'actualisation de la page
+        /* ----- Fonction : Garder la même valeur du panier en cas d'actualisation de la page ----- */
         function actualisePage(){
             let nombreProduit = localStorage.getItem('nombreArticlePanier');
-
+            //Afficher le nombre de produit indiqué dans le localStorage
             if(nombreProduit){
-                document.getElementById('compteurPanier').textContent =nombreProduit;
+                document.querySelector('.compteurPanier').textContent =nombreProduit;
             }
             }
             actualisePage();
-
-            
-
     }
     //Notifier message "erreur" si la récupération de l'API a échouée
     else{
         console.log(this.readyState == XMLHttpRequest.DONE && this.status == 200)
-        document.getElementById('erreur').innerHTML = "Erreur";
+        document.querySelector('.erreur').innerHTML = "Nous sommes désolés le serveur ne répond pas ";
     }
 }
 };

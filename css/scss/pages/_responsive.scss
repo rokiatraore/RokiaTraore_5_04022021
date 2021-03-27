@@ -1,0 +1,77 @@
+@media all and (max-width : 631px){
+    .hero{
+    background: url(C:/Users/konat/Documents/Openclassrooms/P5/front-end/img/d.jpg) center/cover repeat;
+    width: 100%;
+    height: 486px;
+    .banniere{
+        margin: 49px;
+    }
+}
+    
+
+    .banniereTitre{
+        font-size: 33px;
+        line-height: 40px;
+    }
+}
+@media all and (max-width : 900px) {
+    .footer{
+     display: block;
+        .lienFooter{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+    }
+    .newsletter{
+        margin-bottom: 22px;
+    }
+}
+
+@media all and (max-width : 800px){
+    #products{
+        display: flex;
+        flex-direction: column;
+
+    }
+}
+
+
+@media all and (max-width : 1400px){
+    .containerFicheProduit{
+        display: flex;
+        flex-direction: column;
+        .imgFicheProduit{
+            margin: 0px;
+            img{
+                border-radius: 100px 100px 100px 100px;
+            }   
+        }
+
+        .descriptionFicheProduit{
+            margin-top: 49px;
+
+        }
+    }
+
+    #btnAjouterPanier{
+        margin-top: 22px;
+    }
+}
+
+@media all and (max-width : 700px){
+    .containerOrder{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .messageConfirm{
+        .headerMessage{
+            flex-direction: column; 
+
+        }
+    }
+    body > div.messageConfirm > div.headerMessage > h2{
+        text-align: center;
+    }
+}
