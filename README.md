@@ -4,7 +4,6 @@
 <p><strong>Ojectif</strong> : Construisez un site e-commerce
  :</p>
 
-![Desktop - 1](https://user.oc-static.com/upload/2020/08/24/15982605908418_Maquettes%20Ohmyfood.jpg)
 
 ## Cahier des charges
 
