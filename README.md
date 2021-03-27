@@ -3,8 +3,6 @@
 <p>Projet 5 du parcours développement Web d'Openclassroom. </p>
 <p><strong>Ojectif</strong> : Construisez un site e-commerce
  :</p>
- ![alt-text](front-end/img/logo.png)
-
 
 
 ## Cahier des charges
