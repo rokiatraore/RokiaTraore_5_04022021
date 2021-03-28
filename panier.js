@@ -159,8 +159,6 @@ function diminuerQty(that){
 /* ----- Fonction : modifier le nombre d'article dans le localStorage et sur la page panier(icône panier) ----- */
 function modifierNombreArticlePanierDown(){
     var modifierNombreProduitDown = localStorage.getItem('nombreArticlePanier');
-    var prix = localStorage.getItem('totalPrix')
-    prix = parseInt(prix)
     //Convertion string > number
     modifierNombreProduitDown = parseInt(modifierNombreProduitDown);
     
