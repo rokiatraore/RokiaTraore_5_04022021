@@ -32,10 +32,11 @@ sans obligation d’écrire ces tests Expliquez quelles lignes seront testées, 
 
 ## Se connecter au serveur
 
-<strong>Prerequisites</strong></br>
+<strong>Pré-requis</strong></br>
 
-You will need to have Node and npm installed locally on your machine.
+Vous devrez avoir Node et npm installés localement sur votre machine.
+
 
 <strong>Installation</strong></br>
 
-Clone this repo. From within the project folder, run npm install. You can then run the server with node server. The server should run on localhost with default port 3000. If the server runs on another port for any reason, this is printed to the console when the server starts, e.g. Listening on port 3001.
+Clonez ce dépôt. À partir du dossier du projet, exécutez npm install. Vous pouvez ensuite exécuter le serveur avec node server. Le serveur doit fonctionner localhostavec le port par défaut 3000. Si le serveur fonctionne sur un autre port pour une raison quelconque, cela est imprimé sur la console au démarrage du serveur, par exemple Listening on port 3001.
