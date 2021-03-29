@@ -1,11 +1,11 @@
 
 //Récupération du paramètre URL
-var position = window.location.href.indexOf('?');
-var idUrl = window.location.href.substring(position + 1);
+const position = window.location.href.indexOf('?');
+const idUrl = window.location.href.substring(position + 1);
 console.log(idUrl)
 
 // Création d'un nouvel objet de type XMLHttpRequest
-var request = new XMLHttpRequest(); 
+let request = new XMLHttpRequest(); 
 
 //Ouvrir une connexion vers API
 request.open('GET', 'http://localhost:3000/api/teddies/'+idUrl);
@@ -15,7 +15,7 @@ request.onreadystatechange = function () {
   if (this.readyState == XMLHttpRequest.DONE) {
       if (this.status == 200) {
         //Conversion JSON > JS
-        var response = JSON.parse(this.responseText);
+        const response = JSON.parse(this.responseText);
         console.log(response)
     
     /* ---------------------------- STRUCTURE FICHE PRODUIT ----------------------------*/
@@ -47,7 +47,7 @@ request.onreadystatechange = function () {
     /* ---------------------------- BOUTON AJOUTER AU PANIER ----------------------------*/
         
         //Sélection du bouton dans le code
-        var btnAjouterPanier = document.getElementById('btnAjouterPanier');
+        let btnAjouterPanier = document.getElementById('btnAjouterPanier');
 
         //Réaction au clic de l'utilisateur sur le bouton "ajouter au panier" par l'appel d'une fonction
         btnAjouterPanier.addEventListener('click', ajoutArticlePanier );
@@ -61,7 +61,7 @@ request.onreadystatechange = function () {
 
         /* ----- Fonction : Sauvegarder le nombre de produits ajoutés au panier dans le localStorage ----- */
         function nombreArticlePanier(){
-            var nombreProduit = localStorage.getItem('nombreArticlePanier');
+            let nombreProduit = localStorage.getItem('nombreArticlePanier');
      
             //Convertion string > number
             nombreProduit = parseInt(nombreProduit);
@@ -82,17 +82,17 @@ request.onreadystatechange = function () {
         .Augmenter la quantité d'un produit,
         .Ajouter un nouveau produit selectionné dans le local storage.----- */
         function produitLocalStorage (){
-            var ficheProduit = JSON.parse(localStorage.getItem("produitDansLePanier"));
+            let ficheProduit = JSON.parse(localStorage.getItem("produitDansLePanier"));
             console.log(ficheProduit)
 
             //Mettre les choix de la couleur dans une variable
-            var optionsCouleur = document.getElementById("couleur");
+            let optionsCouleur = document.getElementById("couleur");
 
             //Mettre la valeur de l'option selectionné dans une variable
-            var option = optionsCouleur.value;
+            let option = optionsCouleur.value;
 
             //Ajouter propriété qty et couleur dans l'objet
-            var produit = {
+            let produit = {
                 picture : response.imageUrl,
                 colors : option,
                 name : response.name,
@@ -144,7 +144,7 @@ request.onreadystatechange = function () {
 
         /* ----- Fonction : Mettre à jour le prix total des articles ajouté ----- */
         function totalPrix(){
-            var prix = localStorage.getItem("totalPrix");
+            let prix = localStorage.getItem("totalPrix");
 
             //S'il y a un prix afficher alors additioner le prix du produit 
             if(prix != null){

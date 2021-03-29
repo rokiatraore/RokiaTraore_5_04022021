@@ -1,13 +1,13 @@
 
 // ---------------------------- AFFICHER LES ARTICLES SUR LA PAGE PANIER ----------------------------
-var produits = localStorage.getItem("produitDansLePanier");
+let produits = localStorage.getItem("produitDansLePanier");
 produits = JSON.parse(produits);
             
-var totalProduits = localStorage.getItem("totalPrix");
+let totalProduits = localStorage.getItem("totalPrix");
 totalProduits = JSON.parse(totalProduits);
 
-var containerproduits = document.querySelector('.produitAjouter');
-var containerTotalProduits = document.querySelector('.totalProduits');
+let containerproduits = document.querySelector('.produitAjouter');
+let containerTotalProduits = document.querySelector('.totalProduits');
 
 //Gérer les espaces
 function espace (string){
@@ -51,11 +51,11 @@ affichageProduitPanier ()
 // ---------------------------- SUPPRIMER ARTICLE PANIER ----------------------------
 
 //Récupérer le bouton de suppression dans le code HTML
-var boutonSuppression = document.querySelectorAll(".btnSupprimer");
+let boutonSuppression = document.querySelectorAll(".btnSupprimer");
 console.log(boutonSuppression);
 
 //Récupérer un tableau contenant les valeurs des propriétés
-var tableauProduits = Object.values(produits)
+let tableauProduits = Object.values(produits)
 console.log(tableauProduits)
 
 
@@ -70,17 +70,17 @@ for (i = 0; i<boutonSuppression.length; i++){
         for(i = 0; i < tableauProduits.length; i++){
             if(`${espace(tableauProduits[i].name)}-${espace(tableauProduits[i].colors)}` == that.id){
                 //Faire appel au parent du bouton : <div class="fiche"></div>
-                var div_parentBoutonSupp = that.parentNode.parentNode
+                let div_parentBoutonSupp = that.parentNode.parentNode
 
                 //Faire appel au parent de la fiche produit : <div class="produitAjouter"></div>
-                var parentFicheProduit = div_parentBoutonSupp.parentNode
+                let parentFicheProduit = div_parentBoutonSupp.parentNode
                 
                 //Supprimer la fiche produit dans le code HTML
-                var produitSupprimer = parentFicheProduit.removeChild(div_parentBoutonSupp)
+                let produitSupprimer = parentFicheProduit.removeChild(div_parentBoutonSupp)
                 console.log(produitSupprimer)
 
                 //Convertir en JS les données du localStorage 
-                var produitPanier = JSON.parse(localStorage.getItem("produitDansLePanier"))
+                let produitPanier = JSON.parse(localStorage.getItem("produitDansLePanier"))
 
                 //Supprimer la fiche produit dans le localStorage
                 delete produitPanier[`${tableauProduits[i].colors}-${espace(tableauProduits[i].name)}`]
@@ -89,12 +89,12 @@ for (i = 0; i<boutonSuppression.length; i++){
                 localStorage.setItem("produitDansLePanier", JSON.stringify(produitPanier))
 
                 //Modifier le nombre d'article dans le localstorage
-                var nombre = JSON.parse(localStorage.getItem("nombreArticlePanier"))
+                let nombre = JSON.parse(localStorage.getItem("nombreArticlePanier"))
                 nombre = nombre - tableauProduits[i].qty
                 localStorage.setItem("nombreArticlePanier", JSON.stringify(nombre))
 
                 //Modifier le prix dans le localstorage
-                var prixRecalculer = JSON.parse(localStorage.getItem("totalPrix"))
+                let prixRecalculer = JSON.parse(localStorage.getItem("totalPrix"))
                 prixRecalculer = prixRecalculer - tableauProduits[i].qty * tableauProduits[i].price
                 localStorage.setItem("totalPrix", JSON.stringify(prixRecalculer))
 
@@ -108,7 +108,7 @@ for (i = 0; i<boutonSuppression.length; i++){
 // ---------------------------- BOUTON DOWN QTY ----------------------------
 
 //Sélectionner le bouton dans le code HTML
-var btnQtyDown = document.querySelectorAll(".btnQtyDown")
+let btnQtyDown = document.querySelectorAll(".btnQtyDown")
 console.log(btnQtyDown)
 
 //Evènement au clique
@@ -125,7 +125,7 @@ function qtyDown(){
 /* ----- Fonction : pour diminuer la qty au clic de l'utilisateur ----- */
 function diminuerQty(that){
     //Initialiser le compteur pour le prix total
-    var prixTotalDown = 0;
+    let prixTotalDown = 0;
     for(i = 0; i < tableauProduits.length; i++){
         /* Si la qty > 0 et si la valeur de la propriété id du tableau est égal à id="" de la balise, 
         alors soustraire de -1 la qty du produit selectionné */
@@ -136,7 +136,7 @@ function diminuerQty(that){
         //Sinon si la qty est = 0, supprimer le produit
         if (tableauProduits[i].qty == 0 && `${tableauProduits[i].id}-${espace(tableauProduits[i].colors)}`  == that.id){
             tableauProduits[i].qty = 0
-            var supprimerLigne = tableauProduits.filter(function(supprimer){
+            let supprimerLigne = tableauProduits.filter(function(supprimer){
                 return supprimer.qty > 0
             })
             console.log(supprimerLigne)
@@ -158,7 +158,7 @@ function diminuerQty(that){
 
 /* ----- Fonction : modifier le nombre d'article dans le localStorage et sur la page panier(icône panier) ----- */
 function modifierNombreArticlePanierDown(){
-    var modifierNombreProduitDown = localStorage.getItem('nombreArticlePanier');
+    let modifierNombreProduitDown = localStorage.getItem('nombreArticlePanier');
     //Convertion string > number
     modifierNombreProduitDown = parseInt(modifierNombreProduitDown);
     
@@ -171,7 +171,7 @@ function modifierNombreArticlePanierDown(){
 // ---------------------------- BOUTON UP QTY ----------------------------
 
 //Sélectionner le bouton dans le code HTML
-var btnQtyUp = document.querySelectorAll(".btnQtyUp")
+let btnQtyUp = document.querySelectorAll(".btnQtyUp")
 console.log(btnQtyUp)
 //Ecouteur d'évènement
 for(i = 0; i < btnQtyUp.length; i++){
@@ -186,7 +186,7 @@ function qtyUp(){
 /* ----- Fonction pour augmenter la qty au clique ----- */
 function augmenterQty(that){
     //Initialiser le compteur pour le prix total
-    var prixTotalUp = 0;
+    let prixTotalUp = 0;
     for(i = 0; i < tableauProduits.length; i++){
         /* Si la qty est >0 et si la valeur de la propriété name du tableau est égal à id="" de la balise, 
         alors additionner de -1 la qty du produit selectionné */
@@ -211,7 +211,7 @@ function augmenterQty(that){
 
 /* ----- Fonction pour modifier le nombre d'article dans le localStorage et sur la page panier(icône panier) ----- */
 function modifierNombreArticlePanierUp(){
-    var modifierNombreProduit = localStorage.getItem('nombreArticlePanier');
+    let modifierNombreProduit = localStorage.getItem('nombreArticlePanier');
  
     //Convertion string > number
     modifierNombreProduit = parseInt(modifierNombreProduit);
@@ -238,8 +238,8 @@ actualisePage();
 
 // ---------------------------- BOUTON COMMANDER ----------------------------
 
-var btnCommander = document.querySelector('.btnCommander')
-var containerForm = document.querySelector('.containerForm')
+let btnCommander = document.querySelector('.btnCommander')
+let containerForm = document.querySelector('.containerForm')
 console.log(containerForm)
 
 //Ecouteur d'évènement pour afficher le formulaire au clique du btn "commander"
@@ -323,7 +323,7 @@ function afficherFormulaire (){
 // ---------------------------- FORMULAIRE COMMANDE ----------------------------
 
    
-   var form = document.getElementById("form")
+   let form = document.getElementById("form")
 
    //Ecouteur d'évènement pour la validation des champs
    form.addEventListener("submit", function(e){
@@ -337,20 +337,20 @@ function afficherFormulaire (){
     });
 
     //Récupérer les inputs dans des variables
-    var nom = document.getElementById('nom')
-    var prenom = document.getElementById('prenom')
-    var adresse = document.getElementById('adresse')
-    var ville = document.getElementById('ville')
-    var pays = document.getElementById('pays')
-    var telephone = document.getElementById('telephone')
-    var codePostal = document.getElementById('codePostal')
-    var email = document.getElementById('email')
+    let nom = document.getElementById('nom')
+    let prenom = document.getElementById('prenom')
+    let adresse = document.getElementById('adresse')
+    let ville = document.getElementById('ville')
+    let pays = document.getElementById('pays')
+    let telephone = document.getElementById('telephone')
+    let codePostal = document.getElementById('codePostal')
+    let email = document.getElementById('email')
 
     /*----- RegExp ----- */
-    var regexpNomPrenomPaysVille = /^[a-zA-Zéèàê-\s]+$/;
-    var regexAdresse = /^[a-zA-Zéèàê0-9-\s]+$/;
-    var regexpTelephone = /^[0-9]{10}$/;
-    var regexpcodePostal = /^[0-9]{5}$/
+    let regexpNomPrenomPaysVille = /^[a-zA-Zéèàê-\s]+$/;
+    let regexAdresse = /^[a-zA-Zéèàê0-9-\s]+$/;
+    let regexpTelephone = /^[0-9]{10}$/;
+    let regexpcodePostal = /^[0-9]{5}$/
     /*E-mail : 
         Contenir une @ et un .;
         Avant @ : nous pouvons trouver, lettres, chiffres ainsi que "-" "_" ".";
@@ -358,19 +358,19 @@ function afficherFormulaire (){
         Après @ : vérification similaire au avant @;
         Contenir 1 "." puis 2 ou 3 caractères alpha;
         */
-    var regexpEmail = new RegExp (/^[a-zA-Z0-9._-]+[@]{1}[a-zA-Z0-9._-]+[.]{1}[a-zA-Z]{2,3}$/)
+    let regexpEmail = new RegExp (/^[a-zA-Z0-9._-]+[@]{1}[a-zA-Z0-9._-]+[.]{1}[a-zA-Z]{2,3}$/)
 
     /* ----- Fonction : Validation des champs -----*/
     function inputValide(){
         //Mettre dans une variable la valeur des inputs
-        var nomValue = nom.value.trim(); 
-        var prenomValue = prenom.value.trim();
-        var adresseValue = adresse.value.trim();
-        var villeValue = ville.value.trim();
-        var paysValue = pays.value.trim();
-        var telephoneValue = telephone.value.trim();
-        var codePostalValue = codePostal.value.trim();
-        var emailValue = email.value.trim();
+        let nomValue = nom.value.trim(); 
+        let prenomValue = prenom.value.trim();
+        let adresseValue = adresse.value.trim();
+        let villeValue = ville.value.trim();
+        let paysValue = pays.value.trim();
+        let telephoneValue = telephone.value.trim();
+        let codePostalValue = codePostal.value.trim();
+        let emailValue = email.value.trim();
 
         /* ----- Validation Nom ----- */
         if(nomValue === '' ){
@@ -484,10 +484,10 @@ function afficherFormulaire (){
     /*----- Fonction : Signaler une erreur à l'utilisateur -----*/
     function messageErreur(input, message){
         //Récupérer la parent de l'élément : <div class="formItem"></div>
-        var formItem = input.parentElement; 
+        let formItem = input.parentElement; 
 
         //Récupérer la balise <small> de cette élément parent 
-        var small = formItem.querySelector('small')
+        let small = formItem.querySelector('small')
 
         //Ajouter un message d'erreur à la balise <small>
         small.innerText = message
@@ -498,7 +498,7 @@ function afficherFormulaire (){
 
     /*----- Fonction : Signaler une validation à l'utilisateur -----*/
     function messageValide(input){
-        var formItem = input.parentElement; 
+        let formItem = input.parentElement; 
         //Mettre en vert la bordure en ajoutant "valide" à la classe .formItem
         formItem.className = 'formItem valide'
     }
@@ -507,14 +507,14 @@ function afficherFormulaire (){
     function sendBackEnd (){
 
         //Récupérer les ID des produits
-        var products = [];
+        const products = [];
         for(i = 0; i < tableauProduits.length; i = i + 1){
             products.push(tableauProduits[i].id)
         }
         console.log(products)
 
         //Récupérer les valeurs du formulaire
-        var contact = {
+        const contact = {
             firstName : nom.value,
             lastName : prenom.value,
             address : adresse.value,

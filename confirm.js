@@ -1,15 +1,15 @@
 //Récupérer orderId dans le localStorage
-var order = localStorage.getItem('order')
+let order = localStorage.getItem('order')
 order = JSON.parse(order)
 //Séléctionner la balise et afficher orderId sur la page HTML
-var orderId = document.querySelector('.orderId')
+const orderId = document.querySelector('.orderId')
 orderId.innerHTML = "Numéro de commande :" + " " + order;
 console.log(orderId)
  
 
 //Récupérer le total du prix dans le localstorage
-var prix = localStorage.getItem('totalPrix')
+let prix = localStorage.getItem('totalPrix')
 prix = JSON.parse(prix)
 //Séléctionner la balise et afficher le prix sur la page HTML
-var prixTotal = document.querySelector('.prixTotal')
+const prixTotal = document.querySelector('.prixTotal')
 prixTotal.innerHTML = "Prix Total :" + " " + prix + "€";

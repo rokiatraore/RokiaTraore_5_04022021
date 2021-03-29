@@ -2,7 +2,7 @@ const messageErreur = document.querySelector('.erreur');
 const ficheProduit = document.getElementById('products');
 
 // Création d'un nouvel objet de type XMLHttpRequest
-var request = new XMLHttpRequest();
+let request = new XMLHttpRequest();
 
 //Ouvrir une connexion vers API
 request.open('GET', 'http://localhost:3000/api/teddies/');
